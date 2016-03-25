@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>loop img</title>
+	<link rel="stylesheet" type="text/css" href="loop.css">
+	<script type="text/javascript" src="../jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="loop.js"></script>
+</head>
+<body>
+	<div class="loopBox" id="loopBox">
+		<!-- <div><img src=""></div> -->
+	</div>
+
+	<button id="nextBtn">next</button>
+
+<script type="text/javascript">
+
+	var nextBtn = $("#nextBtn");
+	var elBox = $("#loopBox");
+
+	var baseUrl = "./img/";
+	var imgData = [
+		baseUrl + "1.jpg",
+		baseUrl + "2.jpg",
+		baseUrl + "3.jpg",
+		baseUrl + "4.jpg",
+		baseUrl + "5.jpg"
+	];
+
+	var arrEffect = ["example3","example4","example5"];
+	
+
+	var options = {
+		"obj": elBox,
+		"imgs": imgData,
+		"effect": arrEffect[1]
+	}
+	var myLoop = new Loop(options);
+	myLoop.init();
+
+	nextBtn.on("click", function (){
+		myLoop && myLoop.next()
+	})
+
+</script>
+</body>
+</html>

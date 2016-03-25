@@ -1,0 +1,20 @@
+{
+  "name": "loading",
+  "version": "1.0.0",
+  "description": "ui-loading",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "loading"
+  },
+  "keywords": [
+    "loading"
+  ],
+  "author": "dongsheng",
+  "license": "ISC",
+  "dependencies": {
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-load-plugins": "^1.2.0",
+    "gulp-uglify": "^1.5.3"
+  }
+}

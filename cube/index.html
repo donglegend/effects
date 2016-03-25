@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+	<title>my cube</title>
+<style type="text/css">
+
+html{
+   background: -webkit-radial-gradient(center, ellipse, #430d6d 0%, #000000 100%);  
+   background: -moz-radial-gradient(center, ellipse, #430d6d 0%, #000000 100%);  
+   background: -o-radial-gradient(center, ellipse, #430d6d 0%, #000000 100%);  
+   background: -ms-radial-gradient(center, ellipse, #430d6d 0%, #000000 100%);  
+   background: radial-gradient(ellipse at center, #430d6d 0%, #000000 100%);  
+   height: 100%; 
+   position: relative;
+
+}
+body{
+	position: absolute;
+	width: 100%; height: 100%;
+}
+.title{
+	color: #f90; text-align: center; font-size: 3rem; font-weight: bold;
+}
+.stage{
+	-webkit-perspective: 800px;
+	-moz-perspective: 800px;
+	-o-perspective: 800px;
+	-ms-perspective: 800px;
+	perspective: 800px;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	width: 16rem;
+	height: 16rem;
+	margin-left: -8rem;
+	margin-top: -8rem;
+	/*-webkit-transform: translate(-50%, -50%);*/
+}
+.cube{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	-webkit-transform-style: preserve-3d;  
+	-moz-transform-style: preserve-3d;  
+	-o-transform-style: preserve-3d;  
+	-ms-transform-style: preserve-3d;  
+	transform-style: preserve-3d;  
+
+    -webkit-transform: rotateX(0deg) rotateY(0deg); 
+    -moz-transform: rotateX(0deg) rotateY(0deg);
+    -ms-transform: rotateX(0deg) rotateY(0deg);
+    -o-transform: rotateX(0deg) rotateY(0deg);
+    transform: rotateX(0deg) rotateY(0deg); 
+
+    -webkit-animation: 10s spin linear infinite;  
+    -moz-animation: 10s spin linear infinite;  
+    -ms-animation: 10s spin linear infinite;  
+    -o-animation: 10s spin linear infinite;  
+    animation: 10s spin linear infinite;  
+}
+
+.cube div{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background-repeat: no-repeat;
+	background-size: cover;
+	opacity: .8;
+	/*background: rgba(255, 0, 0, 0.1);*/
+	/*background: -webkit-linear-gradient(
+		left, 
+		rgba(54, 226, 248, 0.5) 0px, 
+		rgba(54, 226, 248, 0.5) 2px, 
+		rgba(0, 0, 0, 0) 0px
+		), 
+	-webkit-linear-gradient(
+		top, 
+		rgba(54, 226, 248, 0.5) 0px, 
+		rgba(54, 226, 248, 0.5) 2px, 
+		rgba(0, 0, 0, 0) 0px); 
+
+	background-size: 4rem 4rem;
+	background-repeat: repeat;*/
+}		
+.front{
+	-webkit-transform: translateZ(8rem);
+	-moz-transform: translateZ(8rem);
+	-ms-transform: translateZ(8rem);
+	-o-transform: translateZ(8rem);
+	transform: translateZ(8rem);
+	background-image: url(./1.jpg);
+}
+.back{
+	-webkit-transform: rotateX(180deg) translateZ(8rem);
+	-moz-transform: rotateX(180deg) translateZ(8rem);
+	-o-transform: rotateX(180deg) translateZ(8rem);
+	-ms-transform: rotateX(180deg) translateZ(8rem);
+	transform: rotateX(180deg) translateZ(8rem);
+	background-image: url(./2.jpg);
+}
+.left{
+	-webkit-transform: rotateY(-90deg) translateZ(8rem);
+	-moz-transform: rotateY(-90deg) translateZ(8rem);
+	-o-transform: rotateY(-90deg) translateZ(8rem);
+	-ms-transform: rotateY(-90deg) translateZ(8rem);
+	transform: rotateY(-90deg) translateZ(8rem);
+	background-image: url(./3.jpg);
+}
+.right{
+	-webkit-transform: rotateY(90deg) translateZ(8rem);
+	-moz-transform: rotateY(90deg) translateZ(8rem);
+	transform: rotateY(90deg) translateZ(8rem);
+	background-image: url(./4.jpg);
+}
+.top{
+	-webkit-transform: rotateX(90deg) translateZ(8rem);
+	-moz-transform: rotateX(90deg) translateZ(8rem);
+	transform: rotateX(90deg) translateZ(8rem);
+	background-image: url(./5.jpg);
+}
+.bottom{
+	-webkit-transform: rotateX(-90deg) translateZ(8rem);
+	-moz-transform: rotateX(-90deg) translateZ(8rem);
+	transform: rotateX(-90deg) translateZ(8rem);
+	background-image: url(./6.jpg);
+}
+
+
+@-webkit-keyframes spin{
+	from{
+		-webkit-transform:translateZ(-5rem) rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+	}
+	to{
+		-webkit-transform:translateZ(-5rem) rotateX(360deg) rotateY(360deg) rotateZ(0deg);
+	}
+}
+@-moz-keyframes spin{
+	from{
+		-webkit-transform:translateZ(-5rem) rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+	}
+	to{
+		-webkit-transform:translateZ(-5rem) rotateX(360deg) rotateY(360deg) rotateZ(0deg);
+	}
+}
+@-o-keyframes spin{
+	from{
+		-webkit-transform:translateZ(-5rem) rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+	}
+	to{
+		-webkit-transform:translateZ(-5rem) rotateX(360deg) rotateY(360deg) rotateZ(0deg);
+	}
+}
+@keyframes spin{
+	from{
+		-webkit-transform:translateZ(-5rem) rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+	}
+	to{
+		-webkit-transform:translateZ(-5rem) rotateX(360deg) rotateY(360deg) rotateZ(0deg);
+	}
+}
+
+</style>
+</head>
+<body style="position: absolute; height: 100%; width: 100%;">
+	
+<h2 class="title">cube</h2>
+
+<div class="stage">
+	<div class="cube">
+		<div class="front"></div>
+		<div class="back"></div>
+		<div class="left"></div>
+		<div class="right"></div>
+		<div class="top"></div>
+		<div class="bottom"></div>
+	</div>
+</div>
+
+
+
+</body>
+</html>

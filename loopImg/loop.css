@@ -1,0 +1,121 @@
+*{margin: 0;padding: 0;border: 0; box-sizing:border-box;}
+html,body{width:100%;height:100%;}
+ol, ul {list-style: none;}
+.clearfix{*zoom:1;}
+.clearfix:before,.clearfix:after{display:table;line-height:0;content:"";}
+.clearfix:after{clear:both;overflow:hidden;}
+.fl{float:left;}
+.fr{float:right;}
+img{border:none;}
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: #FFF;
+}
+body {
+    font-size: 14px; color: #FFF;
+    font-family:"微软雅黑",Arial,Helvetica,sans-serif;
+    letter-spacing: 1px;
+    box-shadow: 0 0 160px 0 #515363;
+    -webkit-text-size-adjust:none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    user-select: none;
+    background-size:cover;
+}
+
+.show{
+	display: block;
+}
+.hide{
+	display: none;
+}
+
+#nextBtn{
+	display: block;
+	min-width: 180px;
+	line-height: 40px;
+	text-align: center;
+	border: none;
+	outline: none;
+	margin: 0 auto;
+	cursor: pointer;
+}
+
+.loopBox{
+	width: 320px; height: 436px; margin: 40px auto; position: relative;
+}
+
+.loopBox > div{
+	position: absolute; left: 0; top: 0;
+	width: 100%; height: 100%;
+	background-size: 100% 100%;
+	background-position: center center;
+	z-index: 0;
+}
+
+
+.sub.example3front{ z-index: 1; }
+.sub.example3back{ z-index: 3; }
+.sub.example3front{}
+.sub.example3back{
+	-webkit-animation: example3Back 0.4s ease-out forwards;
+}
+@-webkit-keyframes example3Back{
+	0% { -webkit-transform: rotate(40deg) scale(1.5) translate(200px,10px); opacity: 0; }
+	100% { -webkit-transform: rotate(0deg) scale(1) translate(0,0); opacity: 1; }
+}
+
+
+
+
+.sub.example4front{
+	-webkit-animation: example4Front 0.8s ease-in-out forwards;
+}
+.sub.example4back{
+	z-index: 2;
+}
+
+.sub.example5front, .sub.example5back{
+-webkit-animation-duration: 0.8s;
+	-webkit-animation-timing-function: ease-in-out;
+	-webkit-animation-fill-mode: forwards;
+	-webkit-transform-origin: 0% 100%;	
+}
+
+.sub.example5front{
+	-webkit-animation-name: example5Front;
+}
+.sub.example5back{
+	-webkit-animation-name: example5Back;
+}
+
+@-webkit-keyframes example4Front{
+	0% { -webkit-transform: translateX(0); z-index: 3;}
+	50% { -webkit-transform: rotateZ(-5deg) translateX(-339px); z-index: 3;}
+	51% { z-index: 1;}
+	100% { -webkit-transform: rotateZ(0deg) translateX(0px); z-index: 1;}
+}
+
+
+@-webkit-keyframes example5Front{
+	0% { z-index: 3;}
+	50% { -webkit-transform: rotateZ(-75deg); z-index: 3;}
+	51% { z-index: 1;}
+	100% { -webkit-transform: rotateZ(0deg); z-index: 1;}
+}
+@-webkit-keyframes example5Back{
+	0% { z-index: 1;}
+	50% { -webkit-transform: rotateZ(20deg); z-index: 1;}
+	51% { z-index: 3;}
+	100% { -webkit-transform: rotateZ(0deg); z-index: 3;}
+}
+
+
+
+
+
+

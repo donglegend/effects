@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>codeWorld</title>
+	<style type="text/css">
+	*{padding: 0; margin: 0; box-sizing: border-box;}
+	ul,ol{list-style: none;}
+	html{width: 100%; height: 100%; overflow: hidden;}
+	body{
+		max-width: 640px; height: 100%; margin: 0 auto;
+		box-shadow: 0 0 100px rgba(0,0,0,0.2);
+		font-size: 14px;
+	}
+	h3{text-align: center; padding: 10px 0; font-size: 24px;}
+	#stage{
+		position: absolute;
+		left: 50%; top: 50%;
+		-webkit-transform: translate(-50%,-50%);
+		border: 4px #ccc solid;
+		border-top: none;
+	}
+	.ballFy{width: 100px; height: 60px; text-align: center; line-height: 60px; margin: 10px auto; background: #ccc;}
+	</style>
+</head>
+<body>
+<h3>welcome to world 得到的</h3>
+<canvas id="stage"></canvas>
+<div class="ballFy">气球工厂</div>
+<script type="text/javascript">
+window.requestAnimFrame = (function(){ 
+    return window.requestAnimationFrame || 
+    window.webkitRequestAnimationFrame || 
+    window.mozRequestAnimationFrame || 
+    function( callback ){ 
+        window.setTimeout(callback, 600 / 60); 
+    }; 
+})();  
+	
+
+var canvas = document.getElementById("stage");
+canvas.width = 300; canvas.height = 300;
+var cxt = canvas.getContext("2d"); 
+
+var balls = [];
+var colors = ["pink","red","green","blue","black","#f90","#22defd","#3e3ede"];
+
+
+function Ball(obj){
+	this.radius = obj.radius;
+	this.color = obj.color;
+	this.x = obj.x;
+	this.y = obj.y;
+	this.disY = 0;
+	this.angle = 0;
+}
+Ball.prototype = {
+	create : function (){
+		cxt.clearRect(0, 0, canvas.width, canvas.height);
+		for(var i=0,len = balls.length; i<len; i++){
+			cxt.fillStyle = balls[i].color;
+			cxt.beginPath();
+			cxt.arc(balls[i].x, balls[i].y, balls[i].radius, 0, Math.PI*2, true); 
+			cxt.closePath();
+			cxt.fill();
+		}
+		
+	},
+	anime : function (){
+		var self = this;
+		/*
+		setInterval(function (){
+			
+			if(self.angle < 180){
+				self.angle++;
+			}else{
+				self.angle = 0;
+			}
+			var num = 1-Math.sin(self.angle * Math.PI/180).toFixed(3);
+			self.y = 30 + 240*num;
+			self.create();
+		}, 10)
+		*/
+		if(self.angle < 180){
+			self.angle++;
+		}else{
+			self.angle = 0;
+		}
+		var num = 1-Math.sin(self.angle * Math.PI/180);
+		self.y = 30 + 240*num;
+		self.create();
+		requestAnimFrame(self.anime.bind(self));
+	}
+}
+
+function ballFactory(){
+	var _color = colors[Math.floor(8*Math.random())];
+	var ball = new Ball({radius: 20, color: _color, x: canvas.width / 2, y: 30});
+	ball.create.call(ball);
+	ball.anime.call(ball);
+	balls.push(ball);
+}
+
+for(var i=0; i<10; i++){
+	setTimeout(function (){
+		ballFactory()
+	},i*180);
+}
+
+document.querySelector(".ballFy").onclick = function (){
+	ballFactory()
+}
+
+
+var dir = 1;
+setInterval(function (){
+	for(var i=0,len = balls.length; i<len; i++){
+		if(balls[i].x > canvas.width - 30){
+			dir = -1;
+		}else if(balls[i].x < 30){
+			dir = 1;
+		}
+		balls[i].x += dir;
+	}
+},30)
+
+
+
+
+</script>
+</body>
+</html>

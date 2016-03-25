@@ -1,0 +1,67 @@
+*{
+	padding: 0; margin: 0;
+}
+html, body{
+	height: 100%;
+}
+.title{
+	padding-top: 20px;
+	text-align: center;
+	color: #f90;
+}
+.stage{
+	perspective: 600px;
+	-webkit-perspective: 600px; 
+	width: 10rem;
+	height: 6rem;
+	position: absolute;
+	left: 50%; top: 50%;
+	margin-left: -5rem;
+	margin-top: -7rem;
+}
+.imgBox{
+	-webkit-transform-style: preserve-3d;  
+	position: absolute; 
+	width: 100%; 
+	height: 100%;
+	-webkit-transform: rotateX(-10deg);
+	cursor: pointer;
+	-webkit-transition: -webkit-transform .8s;
+	transition: -webkit-transform .8s;
+}
+.item{
+	position: absolute; left: 0; top: 0;
+	width: 100%; height: 100%;
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: cover;
+	box-shadow: 4px 4px 20px rgba(0, 0, 0, .6);
+	/*backface-visibility:hidden;*/
+	opacity: .5;
+	-webkit-transition: -webkit-transform opacity .6s;
+	transition: -webkit-transform opacity .6s;
+	-webkit-filter: blur(2px); /* Chrome, Opera */
+       -moz-filter: blur(2px);
+        -ms-filter: blur(2px);    
+            filter: blur(2px);
+    filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius=2, MakeShadow=false);
+}
+.focus{
+	opacity: 1;
+	-webkit-filter: blur(0px); /* Chrome, Opera */
+       -moz-filter: blur(0px);
+        -ms-filter: blur(0px);    
+            filter: blur(0px);
+    filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius=0, MakeShadow=false);
+}
+@-webkit-keyframes spin{
+	0%{
+		-webkit-transform: rotateX(-10deg) rotateY(0deg);
+	}
+	100% {
+		-webkit-transform: rotateX(-10deg) rotateY(360deg);
+	}
+}
+.animate{
+	-webkit-animation: spin 20s linear infinite;
+}

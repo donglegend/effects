@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>3dphotos</title>
+	<link rel="stylesheet" type="text/css" href="css/index.css">
+</head>
+<body>
+	<h1 class="title">3dphotos插件  view </h1>
+	<div class="stage">
+		<div class="imgBox"></div>
+	</div>
+
+	<script type="text/javascript" src="../jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="./js/3dphotos.js"></script>
+	<script type="text/javascript">
+		var baseurl = "images/"
+		var options = {
+			data: [
+				{"src": baseurl+"1.jpg"},
+				{"src": baseurl+"2.jpg"},
+				{"src": baseurl+"3.jpg"},
+				{"src": baseurl+"4.jpg"},
+				{"src": baseurl+"5.jpg"},
+				{"src": baseurl+"6.jpg"},
+				{"src": baseurl+"7.jpg"},
+				{"src": baseurl+"8.jpg"},
+				{"src": baseurl+"9.jpg"},
+				{"src": baseurl+"10.jpg"},
+				{"src": baseurl+"11.jpg"},
+				{"src": baseurl+"12.jpg"}
+			]
+		}
+		$(".imgBox").photoShow(options);
+	</script>
+</body>
+</html>

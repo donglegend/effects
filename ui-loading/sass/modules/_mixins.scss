@@ -1,0 +1,130 @@
+@mixin prefix-property($property, $value) {
+ -webkit-#{$property} : $value;
+    -moz-#{$property} : $value;
+     -ms-#{$property} : $value;
+      -o-#{$property} : $value;
+         #{$property} : $value;
+}
+@mixin prefix-value($property, $value) {
+  #{$property}: -webkit-#{$value};
+  #{$property}: -moz-#{$value};
+  #{$property}: -ms-#{$value};
+  #{$property}: -o-#{$value};
+  #{$property}: $value;
+}
+
+// @mixin prefix-keyframes($name, $value) {
+//   @-webkit-keyframes #{$name} {#{$value}};
+//   @-moz-keyframes #{$name} {#{$value}};
+//   @-ms-keyframes #{$name} {#{$value}};
+//   @-o-keyframes #{$name} {#{$value}};
+//   @keyframes #{$name} {#{$value}};
+// }
+
+@mixin display-box($parameter:box){
+  @include prefix-value(display, $parameter);
+}
+@mixin box-orient($parameter:vertical){
+  @include prefix-property(box-orient, $parameter);
+}
+@mixin box-flex($parameter:1){
+  @include prefix-property(box-flex, $parameter);
+}
+@mixin box-pack($parameter:center){
+  @include prefix-property(box-pack, $parameter);
+}
+@mixin box-align($parameter:center){
+  @include prefix-property(box-align, $parameter);
+}
+
+@mixin user-select($parameter) {
+  @include prefix-property(user-select, $parameter);
+}
+
+@mixin border-radius($radius:100%) {
+  @include prefix-property(border-radius, $radius);
+}
+
+@mixin box-shadow($parameter) {
+  @include prefix-property(box-shadow, $parameter);
+}
+//box-sizing: content-box | border-box
+@mixin box-sizing($parameter:border-box) {
+  @include prefix-property(box-sizing, $parameter);
+}
+
+@mixin appearance($parameter:none) {
+  @include prefix-property(appearance, $parameter);
+}
+
+@mixin text-shadow($parameter) {
+  @include prefix-property(text-shadow, $parameter);
+}
+//background-origin: border-box | padding-box | content-box
+@mixin background-origin($parameter) {
+    @include prefix-property(background-origin, $parameter);
+}
+//background-size: [ <length> | <percentage> | auto ]{1,2} | cover | contain
+@mixin background-size($parameter:cover) {
+  @include prefix-property(background-size, $parameter);
+}
+@mixin object-fit($parameter:cover){
+  @include prefix-property(object-fit, $parameter);
+}
+
+@mixin transition($default-transition: all 0.3s ease-out 0s) {
+  @include prefix-property(transition, $default-transition);
+}
+
+//rotate(30deg) | scale | skew | translate |matrix;
+@mixin transform($parameter) {
+  @include prefix-property(transform, $parameter);
+}
+
+@mixin animation($parameter) {
+  @include prefix-property(animation, $parameter);
+}
+
+@mixin triangle($size:24px, $color:#000, $direction:up, $trim:false, $transparent:false) {
+  content: "";
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border: solid $size;
+  @if $direction == up {
+    border-color: transparent transparent $color transparent;
+    @if $transparent {
+      border-color: $color $color transparent $color;
+    }
+    @if $trim {
+      border-top-width: 0;
+    }
+  }
+  @if $direction == right {
+    border-color: transparent transparent transparent $color;
+    @if $transparent {
+      border-color: $color $color $color transparent ;
+    }
+    @if $trim {
+      border-right-width: 0;
+    }
+  }
+  @if $direction == down {
+    border-color: $color transparent transparent transparent;
+    @if $transparent {
+      border-color: transparent $color $color $color;
+    }
+    @if $trim {
+      border-bottom-width: 0;
+    }
+  }
+  @if $direction == left {
+    border-color: transparent $color transparent transparent;
+    @if $transparent {
+      border-color: $color transparent $color $color;
+    }
+    @if $trim {
+      border-left-width: 0;
+    }
+  }
+}

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href="../build/ui-loading.css">
+</head>
+<body>
+	<div class="box"></div>
+	<script type="text/javascript" src="../js/jquery.min.js"></script>
+	<script type="text/javascript" src="../js/ui-loading.js"></script>
+	<script type="text/javascript">
+		/*
+		circularG
+		floatingBarsG
+		overlay-loader
+		floatingCirclesG
+		bowlG
+		cssload-clock
+		ballsWaveG
+		fountainG
+		spinningTextG
+		inTurnBlurringTextG
+		cssload-battery
+		spinner
+		 */
+		$(".box").loading("circularG");
+		setTimeout(function (){
+			$(".box").unloading();
+		}, 5000)
+	</script>
+</body>
+</html>

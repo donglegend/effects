@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="author" content="dongsheng">
+	<title>瀑布流</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+	<!-- 与加载 -->
+	<div class="mark" id="Mark" style="display: block;">
+		<div class="sk-spinner-wave">
+			<div class="sk-rect sk-rect1"></div>
+			<div class="sk-rect sk-rect2"></div>
+			<div class="sk-rect sk-rect3"></div>
+			<div class="sk-rect sk-rect4"></div>
+			<div class="sk-rect sk-rect5"></div>
+		</div>
+	</div>
+	<h2>瀑布流－东胜</h2>
+	<a id="backTop">顶部</a>
+	<div id="main" class="clearfix"></div>
+	<script type="text/javascript" src="waterfull.js"></script>
+	<script type="text/javascript" src="imgLoad.js"></script>
+	<script>
+		window.onload = LoadImg.load(dataImg.data, 0, main);
+	</script>
+</body>
+</html>
