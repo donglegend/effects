@@ -38,10 +38,10 @@ html, body{
 	transform: rotateX(-10deg);
 	cursor: pointer;
 	-webkit-transition: -webkit-transform .8s;
-	-moz-transition: -webkit-transform .8s;
-	-ms-transition: -webkit-transform .8s;
-	-o-transition: -webkit-transform .8s;
-	transition: -webkit-transform .8s;
+	-moz-transition: -moz-transform .8s;
+	-ms-transition: -ms-transform .8s;
+	-o-transition: -o-transform .8s;
+	transition: transform .8s;
 }
 .item{
 	position: absolute; left: 0; top: 0;
