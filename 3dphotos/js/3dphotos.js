@@ -75,7 +75,11 @@
 				var items = self.find("."+className);
 				var rotateAngle = -ph.angle * _index;
 				self.css({
-					'-webkit-transform': 'rotateX(-10deg) rotateY('+rotateAngle+'deg)'
+					'-webkit-transform': 'rotateX(-10deg) rotateY('+rotateAngle+'deg)',
+					'-moz-transform': 'rotateX(-10deg) rotateY('+rotateAngle+'deg)',
+					'-ms-transform': 'rotateX(-10deg) rotateY('+rotateAngle+'deg)',
+					'-o-transform': 'rotateX(-10deg) rotateY('+rotateAngle+'deg)',
+					'transform': 'rotateX(-10deg) rotateY('+rotateAngle+'deg)',
 				});
 				// self.curPos = _index;
 				_this.addClass('focus').siblings().removeClass('focus');

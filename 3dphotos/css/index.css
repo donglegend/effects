@@ -12,6 +12,9 @@ html, body{
 .stage{
 	perspective: 600px;
 	-webkit-perspective: 600px; 
+	-moz-perspective: 600px; 
+	-ms-perspective: 600px; 
+	-o-perspective: 600px; 
 	width: 10rem;
 	height: 6rem;
 	position: absolute;
@@ -21,12 +24,23 @@ html, body{
 }
 .imgBox{
 	-webkit-transform-style: preserve-3d;  
+	-moz-transform-style: preserve-3d;  
+	-ms-transform-style: preserve-3d;  
+	-o-transform-style: preserve-3d;  
+	transform-style: preserve-3d;  
 	position: absolute; 
 	width: 100%; 
 	height: 100%;
 	-webkit-transform: rotateX(-10deg);
+	-moz-transform: rotateX(-10deg);
+	-ms-transform: rotateX(-10deg);
+	-o-transform: rotateX(-10deg);
+	transform: rotateX(-10deg);
 	cursor: pointer;
 	-webkit-transition: -webkit-transform .8s;
+	-moz-transition: -webkit-transform .8s;
+	-ms-transition: -webkit-transform .8s;
+	-o-transition: -webkit-transform .8s;
 	transition: -webkit-transform .8s;
 }
 .item{
@@ -39,6 +53,9 @@ html, body{
 	/*backface-visibility:hidden;*/
 	opacity: .5;
 	-webkit-transition: -webkit-transform opacity .6s;
+	-moz-transition: -webkit-transform opacity .6s;
+	-ms-transition: -webkit-transform opacity .6s;
+	-o-transition: -webkit-transform opacity .6s;
 	transition: -webkit-transform opacity .6s;
 	-webkit-filter: blur(2px); /* Chrome, Opera */
        -moz-filter: blur(2px);
@@ -57,11 +74,21 @@ html, body{
 @-webkit-keyframes spin{
 	0%{
 		-webkit-transform: rotateX(-10deg) rotateY(0deg);
+		-moz-transform: rotateX(-10deg) rotateY(0deg);
+		-ms-transform: rotateX(-10deg) rotateY(0deg);
+		-o-transform: rotateX(-10deg) rotateY(0deg);
+		transform: rotateX(-10deg) rotateY(0deg);
 	}
 	100% {
 		-webkit-transform: rotateX(-10deg) rotateY(360deg);
+		-moz-transform: rotateX(-10deg) rotateY(360deg);
+		-ms-transform: rotateX(-10deg) rotateY(360deg);
+		-o-transform: rotateX(-10deg) rotateY(360deg);
+		transform: rotateX(-10deg) rotateY(360deg);
 	}
 }
 .animate{
 	-webkit-animation: spin 20s linear infinite;
+	-moz-animation: spin 20s linear infinite;
+	animation: spin 20s linear infinite;
 }
