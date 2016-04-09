@@ -38,13 +38,13 @@
 						left: res.l,
 						top: res.t
 					})
-					elInfo.animate({
+					elInfo.stop(true,false).animate({
 						left: 0,
 						top: 0
 					});
 				}else{ 
 					var res = getStyle(direction, w , h, _w, _h);
-					elInfo.animate({
+					elInfo.stop(true,false).animate({
 						left: res.l,
 						top: res.t
 					});
