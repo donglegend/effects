@@ -47,7 +47,7 @@ var imgData = getImgs();
 var Len = imgData.length;
 
 ImageManager.load(imgData, function (progress){
-	var p = Number((progress/imgData.length).toFixed(2))*100 + "%";
+	var p = Number(Math.ceil((progress/imgData.length)))*100 + "%";
 	elLoad.innerHTML = p;
 	if(p === '100%'){
 		elLoad.parentNode.removeChild(elLoad);
