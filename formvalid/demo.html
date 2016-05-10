@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		input, button, select{
+			display: block;
+			width: 400px;
+			height: 30px; 
+			margin: 8px auto;
+		}
+		.form-tips{
+			position: relative;
+			display: inline-block;
+			max-width: 300px;
+		    height: auto;
+		    /*line-height: 20px;*/
+		    border-radius: 4px;
+		    padding: 4px 6px;
+		    word-wrap: break-word;
+		    border: 1px solid #bbbbbb;
+		    z-index: 10000;
+		    background: #ccc;
+		    font-size: 14px;
+		    color: red;
+		    
+		}
+		.triangle{
+			position: absolute;
+			left: -10px;
+			top: 4px;
+			display: inline-block;
+			border-top: 5px solid transparent;
+		    border-right: 10px solid #ccc;
+		    border-bottom: 5px solid transparent;
+		}
+		.warn{
+			display: inline-block;
+			width: 16px;
+			height: 16px;
+			line-height: 16px;
+			text-align: center;
+			background: red;
+			border-radius: 100%;
+			color: #fff;
+			font-style: normal;
+		}
+		.invalid{
+			border: 1px red solid;
+		}
+		@-webkit-keyframes shake {
+		  from, to {
+		    -webkit-transform: translate3d(0, 0, 0);
+		    transform: translate3d(0, 0, 0);
+		  }
+
+		  10%, 30%, 50%, 70%, 90% {
+		    -webkit-transform: translate3d(-10px, 0, 0);
+		    transform: translate3d(-10px, 0, 0);
+		  }
+
+		  20%, 40%, 60%, 80% {
+		    -webkit-transform: translate3d(10px, 0, 0);
+		    transform: translate3d(10px, 0, 0);
+		  }
+		}
+
+		@keyframes shake {
+		  from, to {
+		    -webkit-transform: translate3d(0, 0, 0);
+		    transform: translate3d(0, 0, 0);
+		  }
+
+		  10%, 30%, 50%, 70%, 90% {
+		    -webkit-transform: translate3d(-10px, 0, 0);
+		    transform: translate3d(-10px, 0, 0);
+		  }
+
+		  20%, 40%, 60%, 80% {
+		    -webkit-transform: translate3d(10px, 0, 0);
+		    transform: translate3d(10px, 0, 0);
+		  }
+		}
+		
+		.shake {
+		  -webkit-animation-name: shake;
+		  animation-name: shake;
+		}
+		.animated {
+		  -webkit-animation-duration: 1s;
+		  animation-duration: 1s;
+		  -webkit-animation-fill-mode: both;
+		  animation-fill-mode: both;
+		}
+	</style>
+</head>
+<body>
+	<form name="personForm">
+		<input type="text" data-valid="rule,msg" placeholder="name" name="name">
+		<input type="text" data-valid="rule,msg" placeholder="sex" name="sex">
+		<input type="text" data-valid="rule,msg" placeholder="age" name="age">
+		<input type="text" data-valid="rule,msg" placeholder="job" name="job">
+		<select>
+			<option data-valid="rule,msg" value="1">1</option>
+			<option data-valid="rule,msg" value="2">2</option>
+			<option data-valid="rule,msg" value="3">3</option>
+		</select>
+		<button>sure</button>
+	</form>
+<script type="text/javascript" src="../jquery/jquery.min.js"></script>
+<script type="text/javascript" src="./myFormValid.js"></script>
+<script type="text/javascript">
+
+/**
+ * tipsType: 0 : alert   1: 边缘显示
+ * @type {[type]}
+ */
+var elForm = $("form");
+var ops = {
+	data: {
+		"name": {
+			rule: /\w+/,
+			msg: "请输入您的name"
+		},
+		"age": {
+			rule: /^\d{1,3}$/,
+			msg: "请输入您的age"
+		},
+		"sex": {
+			rule: /\w+/,
+			msg: "请输入您的sex"
+		},
+		"job": {
+			rule: /\w+/,
+			msg: "请输入您的job"
+		}
+	},
+	tipType: 1,
+	errorClassName: "invalid",
+	success: function (){
+		alert("success");
+	},
+	error: function (){
+
+	}
+}
+
+var myForm = elForm.formValid(ops);
+
+</script>
+</body>
+</html>
