@@ -111,18 +111,24 @@ body{
 .right{
 	-webkit-transform: rotateY(90deg) translateZ(8rem);
 	-moz-transform: rotateY(90deg) translateZ(8rem);
+	-ms-transform: rotateY(90deg) translateZ(8rem);
+	-o-transform: rotateY(90deg) translateZ(8rem);
 	transform: rotateY(90deg) translateZ(8rem);
 	background-image: url(./4.jpg);
 }
 .top{
 	-webkit-transform: rotateX(90deg) translateZ(8rem);
 	-moz-transform: rotateX(90deg) translateZ(8rem);
+	-ms-transform: rotateX(90deg) translateZ(8rem);
+	-o-transform: rotateX(90deg) translateZ(8rem);
 	transform: rotateX(90deg) translateZ(8rem);
 	background-image: url(./5.jpg);
 }
 .bottom{
 	-webkit-transform: rotateX(-90deg) translateZ(8rem);
 	-moz-transform: rotateX(-90deg) translateZ(8rem);
+	-ms-transform: rotateX(-90deg) translateZ(8rem);
+	-o-transform: rotateX(-90deg) translateZ(8rem);
 	transform: rotateX(-90deg) translateZ(8rem);
 	background-image: url(./6.jpg);
 }
@@ -138,26 +144,26 @@ body{
 }
 @-moz-keyframes spin{
 	from{
-		-webkit-transform:translateZ(-5rem) rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+		-moz-transform:translateZ(-5rem) rotateX(0deg) rotateY(0deg) rotateZ(0deg);
 	}
 	to{
-		-webkit-transform:translateZ(-5rem) rotateX(360deg) rotateY(360deg) rotateZ(0deg);
+		-moz-transform:translateZ(-5rem) rotateX(360deg) rotateY(360deg) rotateZ(0deg);
 	}
 }
 @-o-keyframes spin{
 	from{
-		-webkit-transform:translateZ(-5rem) rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+		-o-transform:translateZ(-5rem) rotateX(0deg) rotateY(0deg) rotateZ(0deg);
 	}
 	to{
-		-webkit-transform:translateZ(-5rem) rotateX(360deg) rotateY(360deg) rotateZ(0deg);
+		-o-transform:translateZ(-5rem) rotateX(360deg) rotateY(360deg) rotateZ(0deg);
 	}
 }
 @keyframes spin{
 	from{
-		-webkit-transform:translateZ(-5rem) rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+		transform:translateZ(-5rem) rotateX(0deg) rotateY(0deg) rotateZ(0deg);
 	}
 	to{
-		-webkit-transform:translateZ(-5rem) rotateX(360deg) rotateY(360deg) rotateZ(0deg);
+		transform:translateZ(-5rem) rotateX(360deg) rotateY(360deg) rotateZ(0deg);
 	}
 }
 
