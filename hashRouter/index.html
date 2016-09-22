@@ -1,14 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-	<meta charset="UTF-8">
-	<title>Document</title>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-	<div class="wrap">
-		ddd
-	</div>
-	<script src="http://cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
-	<script src="main.js"></script>
+    <menu>
+        <a href="#home">home</a>
+        <a href="#list">list</a>
+        <a href="#info">info</a>
+    </menu>
+    <div class="wrap">
+    </div>
+    <script type="text/javascript" src="http://cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
+    <script src="main.js"></script>
+    <script>
+    $.fn.animatefn = function(ops) {
+        var $el = $(this);
+
+        var effect = ops.effect,
+            cb = ops.cb || $.noop;
+
+        $el.addClass('animated ' + effect).one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
+            $el.removeClass(effect)
+            cb();
+            return $el;
+        });
+        return $el;
+    }
+
+
+    location.hash = "";
+    var elBox = $(".wrap");
+    HashRoute.maps({
+        home: h,
+        list: h
+    }).add('info', h)
+    HashRoute.go("home")
+
+
+    function h(path) {
+        elBox.animatefn({
+            effect: "fadeOut",
+            cb: function() {
+                elBox.html($("#" + path).html()).animatefn({
+                    effect: "fadeIn"
+                })
+            }
+        })
+    }
+    </script>
+    <script type="text/html" id="home">
+        <div class="home">
+            <h2>this is home</h2>
+        </div>
+    </script>
+    <script type="text/html" id="info">
+        <div class="info">
+            <h2>this is info</h2>
+            <p>info showinfo show info showinfo info showinfo info showinfo info showinfo info showinfo info showinfo info showinfo info showinfo info showinfo info showinfo info showinfo info showinfo info showinfo info showinfo info showinfo info showinfo </p>
+        </div>
+    </script>
+    <script type="text/html" id="list">
+        <ul class="list">
+            <li>this is list1</li>
+            <li>this is list2</li>
+            <li>this is list3</li>
+            <li>this is list4</li>
+            <li>this is list5</li>
+        </ul>
+    </script>
 </body>
+
 </html>

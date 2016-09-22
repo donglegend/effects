@@ -1,0 +1,88 @@
+menu a {
+    display: inline-block;
+    text-decoration: none;
+    padding: 4px 15px;
+}
+
+body {
+    text-align: center;
+    color: #fff;
+}
+
+ul {
+    list-style: none;
+}
+
+.home {
+    background: #f90;
+    min-height: 400px;
+}
+
+.list {
+    background: #a23360;
+    line-height: 30px;
+    min-height: 400px;
+}
+
+.info {
+    background: #234765;
+    min-height: 400px;
+}
+
+.info p {
+    text-align: left;
+    padding: 10px;
+}
+
+.animated {
+    -webkit-animation-duration: .6s;
+    animation-duration: .6s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+
+@-webkit-keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.fadeIn {
+    -webkit-animation-name: fadeIn;
+    animation-name: fadeIn;
+}
+
+@-webkit-keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+.fadeOut {
+    -webkit-animation-name: fadeOut;
+    animation-name: fadeOut;
+}
