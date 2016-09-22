@@ -1,0 +1,64 @@
+*{
+	padding: 0; margin: 0;
+}
+ul{
+	list-style: none;
+}
+.clearfix:before, .clearfix:after{
+	display: table;content: "";line-height: 0;
+}
+.clearfix:after{
+	clear: both;
+}
+.box{
+	position: relative;
+	width: 360px;
+	min-height: 200px;
+	border: 1px #ccc solid;
+	margin: 20px auto;
+	text-align: center;
+	
+}
+.title{
+	padding: 10px 0;
+	border-bottom: 1px #ccc solid;
+}
+.nextBtn, .prevBtn{
+	position: absolute;
+	top: 0;
+	color: #4691e2;
+	padding: 14px;
+	background: #ddd;
+	cursor: pointer;
+}
+.nextBtn:hover, .prevBtn:hover{
+	background: #ccc;
+}
+.nextBtn{
+	right: 0;
+	top: 0;
+}
+.months{
+	width: 100%;
+}
+.months li{
+	float: left;
+	width: 14.28%;
+}
+.months .thead{
+	color: red;
+	padding: 6px 0;
+}
+.months .tbody li{
+	color: #000;
+	cursor: pointer;
+	padding: 4px 0;
+	-webkit-transition: all .2s;
+}
+.months .tbody .gray{
+	color: #aaa;
+}
+.months .tbody li:hover{
+	color: #fff;
+	background: #4691e2;
+}

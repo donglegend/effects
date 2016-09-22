@@ -1,10 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+	<meta name="author" content="dongsheng">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+<meta id="viewport" name="viewport" content="width=device-width,height=device-height,initial-scale=1,user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="grey" />
+<meta name="format-detection" content="telephone=no;address=no;email=no"/>
 	<meta charset="UTF-8">
-	<title>Document</title>
+	<title>Date</title>
+	<link rel="stylesheet" href="index.css">
+	<style>
+	.donglegend{
+		text-align: center;
+		color: #f90;
+		padding: 20px 0;
+		font-size: 40px;
+	}
+	.selfSet{
+		text-align: center;
+	}
+	.selfSet input{
+		line-height: 30px;
+		outline: none;
+		padding: 0 4px;
+		width: 80px;
+	}
+	.btn-sure{
+		line-height: 30px;
+		padding: 0 24px;
+	}
+	</style>
+	<script src="http://cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
+	<script src="main.js"></script>
 </head>
 <body>
-	date
+	<h1 class="donglegend">donglegend 日历</h1>
+	<div class="box" id="box">
+		<h2 class="title">2016-07-13</h2>
+		<div class="prevBtn">上月</div>
+		<div class="nextBtn">下月</div>
+		<div class="months">
+			<ul class="thead clearfix">
+				<li>日</li>
+				<li>一</li>
+				<li>二</li>
+				<li>三</li>
+				<li>四</li>
+				<li>五</li>
+				<li>六</li>
+			</ul>
+			<ul class="tbody clearfix">
+				
+			</ul>
+		</div>
+	</div>
+	<form class="selfSet">
+		<input type="text" placeholder="year" name="year">
+		<input type="text" placeholder="month" name="month">
+		<input type="text" placeholder="day" name="day">
+		<button class="btn-sure">确定</button>
+	</form>
 </body>
 </html>
