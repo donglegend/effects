@@ -1,3 +1,18 @@
 <view class="container">
-    <view> this is info</view>
+    <view style="width: 100%">
+        <view  class="block">
+            <text class="text">{{info.gift_item_name}}</text>
+            <image class="img" src="{{info.gift_item_pic_url}}"></image>
+        </view>
+        <view class="p">
+            <text>日期：{{info.gift_start_date}}</text>
+        </view>
+        <view class="p">
+            <text>推荐词：{{info.gift_recommend}}</text>
+        </view>
+    </view>
+   
+    <view>
+        <loading hidden="{{!showLoading}}">加载中...</loading>
+    </view>
 </view>

@@ -1,10 +1,12 @@
 <!--index.wxml-->
 <view class="container">
 <scroll-view style="height: 100%;" scroll-y="true" bindscrolltolower="getGift">
-  <view wx:for="{{list}}" bindtap="goinfo" class="block">
-    <text class="text">{{item.gift_item_name}}</text>
-    <image class="img" src="{{item.gift_item_pic_url}}"></image>
-  </view>
+  <block wx:for="{{list}}">
+    <view bindtap="goinfo" data-id="{{item.gift_id}}" class="block">
+      <text class="text">{{item.gift_item_name}}</text>
+      <image class="img" src="{{item.gift_item_pic_url}}"></image>
+    </view>
+  </block>
   <view>
     <loading hidden="{{!showLoading}}">加载中...</loading>
   </view>

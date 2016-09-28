@@ -9,9 +9,9 @@ Page({
     showLoading: true
   },
   //事件处理函数
-  goinfo: function() {
+  goinfo: function(e) {
     wx.navigateTo({
-      url: '../info/info'
+      url: '../info/info?id='+e.currentTarget.dataset.id
     })
   },
   getGift: function (){
