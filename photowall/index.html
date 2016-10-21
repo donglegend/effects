@@ -156,7 +156,7 @@
 
 
 
-    // main();
+    main();
 
     $(".btn").on("click", function() {
         move();
@@ -181,7 +181,7 @@
                 // html += '<div class="item" style="background: ' + getColor() + '"></div>'
         }
         elBox.html(html);
-        move();
+        
     }
 
     function random(n, m) {
@@ -264,14 +264,14 @@
     }
 
     var imgs = [];
-    for (var j = 0; j < COUNT; j++) {
+    for (var j = COUNT-1; j > 60 ; j--) {
         imgs.push({
             src: "images/" + j + ".jpg"
         })
     }
     LoadImg.load(imgs, 0, function() {
         $("#Mark").remove();
-        main();
+        move();
     })
     </script>
 </body>
