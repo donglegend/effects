@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Rainbow</title>
+    <style>
+    div {
+        padding: 0;
+        margin: 0;
+    }
+    
+    html,
+    body {
+    	width: 100%;
+        height: 100%;
+    }
+    
+    .box {
+        padding: 20px;
+        margin: 10px auto;
+        font-size: 0;
+        text-align: left;
+        -webkit-perspective: 800px;
+		-moz-perspective: 800px;
+		-ms-perspective: 800px;
+		-o-perspective: 800px;
+    }
+    
+    .item {
+        font-size: 14px;
+        display: inline-block;
+        *float: left;
+        width: 80px;
+        height: 80px;
+        opacity: .8;
+        /*-webkit-transition: all 1s;*/
+        /*transition: all 1s;*/
+        /*-moz-transition: all .3s;
+        -ms-transition: all .3s;
+        -o-transition: all .3s;
+        transition: all .3s;*/
+    }
+    .item img{
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+    button{
+    	display: block;
+    	width: 100px;
+    	line-height: 40px;
+    	margin: 0 auto;
+    	cursor: pointer;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="box"></div>
+    <button class="btn">照片墙</button>
+    <script type="text/javascript" src="http://cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
+    <script type="text/javascript">
+    var COUNT = 72;
+    var moving = false;
+    var elBox = $(".box");
+    main();
+
+    $(".btn").on("click", function (){
+    	move();
+    })
+
+    function main() {
+        init();
+    }
+
+    function getColor() {
+        return '#' + ('00000' + (Math.random() * 0x1000000 << 0).toString(16)).slice(-6);
+    }
+
+    function init() {
+        createHtml();
+    }
+
+    function createHtml() {
+        var html = "";
+        for (var i = 0; i < COUNT; i++) {
+            html += '<div class="item"><img src="images/'+i+'.jpg"/></div>'
+            // html += '<div class="item" style="background: ' + getColor() + '"></div>'
+        }
+        elBox.html(html);
+        move();
+    }
+
+    function random(n, m) {
+        var d = m - n + 1;
+        return n + Math.floor(Math.random() * d)
+    }
+
+    function move() {
+    	if(moving){
+    		return ;
+    	}
+    	moving = true;
+        $(".item", elBox).each(function(index, el) {
+            $(this).animate({
+                opacity: 0
+            }, {
+                duration: random(100, 2000),
+                step: function() {
+                },
+                progress: function(animation, p, remainingMs) {
+                    $(this).css({
+                    	"-webkit-transform": "scale(" + (1-p) + ")",
+                    	"-moz-transform": "scale(" + (1-p) + ")",
+                    	"-ms-transform": "scale(" + (1-p) + ")",
+                    	"-o-transform": "scale(" + (1-p) + ")",
+                    	"transform": "scale(" + (1-p) + ")"
+                    });
+                },
+                complete: function() {},
+                done: function() {
+
+                }
+            })
+        }).promise().done(function() {
+            $(".item", elBox).each(function(index, el) {
+            	var d = index*40;
+                $(this).delay(d).animate({
+                    opacity: 1
+                }, {
+                    duration: 1500,
+                    step: function (p){
+                    	var ry = (1 - p) * 360;
+                        var tz = (1 - p) * 1000;
+                        $(this).css({
+                        	"-webkit-transform": "rotateY(" + ry + "deg) translateZ(" + tz + "px) scale("+p+")",
+                        	"-moz-transform": "rotateY(" + ry + "deg) translateZ(" + tz + "px) scale("+p+")",
+                        	"-ms-transform": "rotateY(" + ry + "deg) translateZ(" + tz + "px) scale("+p+")",
+                        	"-o-transform": "rotateY(" + ry + "deg) translateZ(" + tz + "px) scale("+p+")",
+                        	"transform": "rotateY(" + ry + "deg) translateZ(" + tz + "px) scale("+p+")"
+                        })
+                    },
+                    progress: function(animation, p, remainingMs) {
+                       
+                    }
+                })
+            }).promise().done(function (){
+            	moving = false;
+            })
+
+        })
+    }
+    </script>
+</body>
+
+</html>
