@@ -1,0 +1,108 @@
+.five-slide-inner{
+    width:100%;
+    height:100%;
+    background-image: url("../image/bgpink.jpg");
+    background-size: cover;
+}
+.five-slide-inner .five-inner{
+    width:100%;
+    height:100%;
+    /*background: pink;*/
+}
+.five-inner > img{
+    width:100%;
+    position:absolute;
+}
+.five-inner > img[data-type="we"]{
+    top: 11%;
+    left: 10%;
+    width: 80%;
+    opacity:0;
+    transform: rotateY(180deg);
+}
+.five-inner > img.showWe[data-type="we"]{
+    transition-property: all;
+    transition-duration: 2s;
+    opacity:1;
+}
+.five-inner > img[data-type="window"]{
+    top: 10%;
+    left: 0;
+    z-index: 10;
+    transform: scale(1.5,1.5);
+}
+.five-inner > img.showWindow[data-type="window"]{
+    transition-property: all;
+    transition-duration: 2s;
+    transform: scale(1,1);
+}
+.five-inner > p[data-type="word"]{
+    color: #A17C19;
+    /* background: antiquewhite; */
+    font-size: 18px;
+    width: 100%;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+    position: absolute;
+    bottom: 20%;
+}
+.five-inner > p[data-type="word"]:nth-of-type(1){
+    transform: translate(-100%,0);
+}
+.five-inner > p.showWord[data-type="word"]:nth-of-type(1){
+    transform: translate(0,0);
+}
+.five-inner > p[data-type="word"]:nth-of-type(2){
+    bottom: 15%;
+    transform: translate(100%,0);
+}
+.five-inner > p.showWord[data-type="word"]:nth-of-type(2){
+    transform: translate(0,0);
+}
+.five-inner .two-inner-down{
+    position: absolute;
+    bottom: 0;
+}
+.five-inner .two-inner-down > img,.five-inner .five-inner-up > img{
+    transform: scale(0,0);
+}
+.five-inner .five-inner-up > img[data-property="huashu3"] {
+    width: 50%;
+    top: 0;
+    left: 60%;
+    position:absolute;
+}
+.five-inner .five-inner-up > img[data-property="hua_3"] {
+    width: 20%;
+    top: 0;
+    left: 83%;
+    position:absolute;
+}
+.five-inner .five-inner-up > img[data-type="bird"]{
+    width: 35%;
+    top: 85%;
+    z-index: 10;
+    left: 0;
+    position:absolute;
+}
+.five-inner .five-inner-up > img[data-type="love"] {
+    width: 35%;
+    top: 3%;
+    z-index: 10;
+    left: 10%;
+    transform:translate(-200%,-100%);
+    position:absolute;
+}
+.five-inner .two-inner-down > img.showFlower,.five-inner .five-inner-up > img.showFlower{
+    transition-property: all;
+    transition-duration: 2s;
+    transform: scale(1,1);
+    opacity:1;
+}
+.five-inner .five-inner-up > img.showLove[data-type="love"] {
+    transition-property: all;
+    transition-duration: 2s;
+    transform: rotate(360deg) translate(0,0);
+    opacity:1;
+}
