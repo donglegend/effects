@@ -67,7 +67,6 @@ var PageCode = (function() {
 		//填充html
 		fillHtml: function(obj, args) {
 			// var ms = args;
-			console.log(args)
 			this.offEvent(obj)
 			return (function() {
 
