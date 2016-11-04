@@ -66,7 +66,10 @@
 
             canvasData = handleData();
 
-            canvas.setAttribute("class", "show");
+            setTimeout(function (){
+                canvas.setAttribute("class", "show");    
+            }, 30)
+            
         }
         img.src = url;
     }
@@ -82,7 +85,7 @@
                     // console.log(j/2, i/2)
                     arr.push({
                         curTime: 0,
-                        duration: random(30, 60),
+                        duration: random(60, 90),
                         x0: random(20, W-20),
                         y0: random(20, H-20),
                         x: j / RATIO,
