@@ -31,23 +31,12 @@
     var easing = Tween[TweenE[1]];
 
     var RATIO = 1;
-    // var RATIO = window.devicePixelRatio || 1;
-   
-    // if (RATIO) {
-    //     canvas.style.width = W + "px";
-    //     canvas.style.height = H + "px";
-    //     canvas.height = H * RATIO;
-    //     canvas.width = W * RATIO;
-    //     ctx.scale(RATIO, RATIO);
-    // }
-
 
     Init();
 
     function Init() {
         drawBg();
-        // drawTExt("donglegend");
-        drawImg("images/niuniu.png");
+        drawImg("images/hankuke.png");
         
         loop();
     }
@@ -68,19 +57,6 @@
     		canvasData = handleData();
     	}
     	img.src = url;
-    }
-
-    function drawTExt(text) {
-
-        ctx.fillStyle = "#ffffff";
-        ctx.font = "bold 40px 微软雅黑"
-        ctx.textAlign = "center";
-        ctx.textBaseline = 'bottom';
-
-        var x = (W - ctx.measureText(text).width) / 2,
-            y = (H - 16) / 2;
-
-        ctx.fillText(text, x, y);
     }
 
     function handleData(){
