@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <style>
+    	.luck-0{
+    		background: #ef88ab;
+    	}
+    	.luck-1{
+    		background: #e578f5;
+    	}
+    	.luck-2{
+    		background: #534bf1;
+    	}
+    	.luck-3{
+    		background: #4bc6f1;
+    	}
+    	.luck-4{
+    		background: #4bf1c1;
+    	}
+    	.luck-5{
+    		background: #aeec2b;
+    	}
+    	.luck-6{
+    		background: #f5f519;
+    	}
+    	.luck-7{
+    		background: #e4820e;
+    	}
+    </style>
+</head>
+
+<body>
+    <div id="luckStage">
+        <table border="0" cellpadding="0" cellspacing="0">
+            <tr>
+                <td class="luck-cell luck-0">0
+                    <div class="mask"></div>
+                </td>
+                <td class="luck-cell luck-1">1
+                    <div class="mask"></div>
+                </td>
+                <td class="luck-cell luck-2">2
+                    <div class="mask"></div>
+                </td>
+            </tr>
+            <tr>
+                <td class="luck-cell luck-7">7
+                    <div class="mask"></div>
+                </td>
+                <td>
+                    <a href="javascript:;" id="btn-start">click</a>
+                </td>
+                <td class="luck-cell luck-3">3
+                    <div class="mask"></div>
+                </td>
+            </tr>
+            <tr>
+                <td class="luck-cell luck-6">6
+                    <div class="mask"></div>
+                </td>
+                <td class="luck-cell luck-5">5
+                    <div class="mask"></div>
+                </td>
+                <td class="luck-cell luck-4">4
+                    <div class="mask"></div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <script type="text/javascript" src="http://cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
+    <script type="text/javascript" src="main.js"></script>
+    <script>
+    	var myLuck = new Luck("luckStage");
+    	var clicked = false;
+    	$("#btn-start").on("click", function (){
+    		if(clicked){
+    			return ;
+    		}
+    		clicked = true;
+    		myLuck.run(function (){
+    			clicked = false;
+    		});
+    	})
+    </script>
+</body>
+
+</html>

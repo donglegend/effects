@@ -1,0 +1,42 @@
+#luckStage {
+    width: 300px;
+    height: 300px;
+    margin: 0px auto;
+    border: 2px solid #f90;
+}
+
+#luckStage table td {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    text-align: center;
+    /* border: 1px #ccc solid; */
+    font-size: 20px;
+}
+
+#luckStage table td a {
+    width: 100px;
+    height: 100px;
+    display: block;
+    background: red;
+    opacity: .7;
+    line-height: 100px;
+}
+#luckStage table td a:hover{
+	opacity: 1;
+}
+
+#luckStage table td.active .mask {
+    display: block;
+}
+
+.mask {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: rgba(0, 0, 0, .8);
+    display: none;
+}
+
