@@ -1,0 +1,144 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+    * {
+        padding: 0;
+        margin: 0;
+    }
+    html {
+        background: #000;
+    }
+    canvas{
+        display: none;
+    }
+    .show{
+        display: block;
+    }
+    </style>
+</head>
+
+<body>
+    <canvas id="donglegend">your browser is not support canvas!</canvas>
+    <script type="text/javascript" src="src/utils/requestAnimationFrame.js"></script>
+    <script type="text/javascript" src="src/utils/Tween.js"></script>
+    <script type="text/javascript">
+    var W = window.innerWidth,
+        H = window.innerHeight;
+    
+    var canvas = document.getElementById("donglegend");
+    canvas.width = W;
+    canvas.height = H;
+
+    var ctx = canvas.getContext("2d");
+
+    var canvasData = [];
+
+    var easing = Tween[TweenE[1]];
+
+    var RATIO = 1;
+
+    Init();
+
+    function Init() {
+        drawBg();
+        drawImg("images/mou.png");
+        
+        loop();
+    }
+
+
+    function drawBg() {
+        ctx.fillStyle = "#000000";
+        ctx.fillRect(0, 0, W, H);
+    }
+
+    function drawImg(url){
+        var img = new Image();
+        img.onload = function (){
+            var _x = (W - img.width) / 2,
+                _y = (H - img.height) / 2;
+            ctx.drawImage(img,0,0,img.width*RATIO,img.height*RATIO,_x,_y,img.width,img.height);
+
+            canvasData = handleData();
+
+            setTimeout(function (){
+                canvas.setAttribute("class", "show");    
+            }, 30)
+            
+        }
+        img.src = url;
+    }
+
+    function handleData(){
+        var canvasData = ctx.getImageData(0, 0, W, H).data;
+        var arr = [];
+        
+        for(var i = 0; i<H; i++){
+            for(var j = 0; j<W; j++){
+                var pos = (i * W + j) * 4;
+                if(canvasData[pos] > 50){
+                    // console.log(j/2, i/2)
+                    arr.push({
+                        curTime: 0,
+                        duration: random(60, 90),
+                        x0: random(20, W-20),
+                        y0: random(20, H-20),
+                        x: j / RATIO,
+                        y: i / RATIO,
+                        color: "rgb("+canvasData[pos]+","+canvasData[pos+1]+","+canvasData[pos+2]+")" 
+                    })
+                }
+            }
+        }
+        return arr;
+    }
+
+    function drawPar(){
+        var len = canvasData.length, curp = null;
+        for(var i = 0; i<len; i++){
+
+            curp = canvasData[i];
+            ctx.fillStyle = curp.color;
+
+            if(curp.curTime <= curp.duration){
+                var _x = easing(curp.curTime, curp.x0, curp.x-curp.x0, curp.duration);
+                var _y = easing(curp.curTime, curp.y0, curp.y-curp.y0, curp.duration);
+
+
+                ctx.fillRect(_x, _y, 1, 1);
+
+                curp.curTime += 1;
+            }else{
+                ctx.fillRect(curp.x, curp.y, 1, 1);
+            }
+        }
+    }
+
+
+    function getRandomColor(){ 
+        return "#"+("00000"+((Math.random()*16777215+0.5)>>0).toString(16)).slice(-6); 
+    } 
+
+    function random(n, m){
+        var c = m-n+1;  
+        return Math.floor(Math.random() * c + n);
+    }
+
+
+
+    // 系统主循环
+    function loop() {
+        ctx.clearRect(0, 0, W, H);
+        drawBg();
+        drawPar();
+        requestAnimationFrame(loop);
+    }
+    </script>
+</body>
+
+</html>
