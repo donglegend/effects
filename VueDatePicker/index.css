@@ -1,0 +1,191 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-transition: all .25s;
+    -moz-transition: all .25s;
+    -ms-transition: all .25s;
+    -o-transition: all .25s;
+    transition: all .25s;
+}
+
+.animated {
+    -webkit-animation-duration: .3s;
+    animation-duration: .3s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+
+@-webkit-keyframes fadeInDown {
+    from {
+        opacity: 0;
+        -webkit-transform: translate3d(0, -100%, 0);
+        transform: translate3d(0, -100%, 0);
+    }
+    to {
+        opacity: 1;
+        -webkit-transform: none;
+        transform: none;
+    }
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        -webkit-transform: translate3d(0, -100%, 0);
+        transform: translate3d(0, -100%, 0);
+    }
+    to {
+        opacity: 1;
+        -webkit-transform: none;
+        transform: none;
+    }
+}
+
+.fadeInDown {
+    -webkit-animation-name: fadeInDown;
+    animation-name: fadeInDown;
+}
+
+@-webkit-keyframes fadeInUp {
+    from {
+        opacity: 0;
+        -webkit-transform: translate3d(0, 100%, 0);
+        transform: translate3d(0, 100%, 0);
+    }
+    to {
+        opacity: 1;
+        -webkit-transform: none;
+        transform: none;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        -webkit-transform: translate3d(0, 100%, 0);
+        transform: translate3d(0, 100%, 0);
+    }
+    to {
+        opacity: 1;
+        -webkit-transform: none;
+        transform: none;
+    }
+}
+
+.fadeInUp {
+    -webkit-animation-name: fadeInUp;
+    animation-name: fadeInUp;
+}
+
+.date-picker {
+    display: inline-block;
+    position: relative;
+    vertical-align: top;
+}
+
+.date-input {
+    position: relative;
+    width: 200px;
+    height: 32px;
+    padding: 0 10px;
+    line-height: 30px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.date-panel {
+    position: absolute;
+    top: 30px;
+    left: 0;
+    width: 300px;
+    padding: 6px;
+    background: #fff;
+    box-shadow: 0 5px 5px 4px rgba(0, 0, 0, .1);
+    z-index: 5;
+}
+
+.date-header {
+    font-weight: bold;
+    text-align: center;
+}
+
+.date-b {
+    position: relative;
+    height: 40px;
+    line-height: 40px;
+}
+
+.date-b .pre {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 40px;
+    height: 40px;
+}
+
+.date-b .next {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 40px;
+    height: 40px;
+}
+
+.date-b .pre:hover,
+.date-b .next:hover {
+    background: #4691e2;
+    cursor: pointer;
+    border-radius: 5px;
+    color: #fff;
+}
+
+.date-b .date {
+    display: block;
+    margin: 0 45px;
+}
+
+.date-b .date:hover {
+    background: #eee;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.day-b .cell,
+.date-body .cell {
+    display: inline-block;
+    width: 40px;
+    height: 36px;
+    border-radius: 5px;
+    text-align: center;
+    line-height: 36px;
+    cursor: pointer;
+}
+
+.date-body .month {
+    width: 70px;
+    height: 60px;
+    margin-bottom: 12px;
+    line-height: 60px;
+}
+
+.date-body .cell:hover {
+    background: #eee;
+}
+
+.date-body .gray {
+    color: #ccc;
+}
+
+.date-body .today,
+.date-body .today:hover {
+    background: #44b549;
+    color: #fff;
+}
+
+.date-body .current,
+.date-body .current:hover {
+    background: #4691e2;
+    color: #fff;
+}
