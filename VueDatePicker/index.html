@@ -109,10 +109,12 @@
                 this.curDay = d;
                 this.month = m || this.month;
                 if(this.month < 0){
-                    this.month = 0;
+                    this.month = 11;
+                    this.year = this.year - 1;
                 }
                 if(this.month > 11){
-                    this.month = 11;
+                    this.month = 0;
+                    this.year = this.year + 1;
                 }
                 var m = this.month + 1;
                 if (m < 10) {
@@ -124,13 +126,14 @@
                 this.newDate = this.year + '-' + m + '-' + d;
                 this.show = false;
 
-                if (this.month === 0) {
-                    this.refreshDays(this.year - 1, 11);
-                } else if (this.month === 11){
-                    this.refreshDays(this.year + 1, 0);
-                } else {
-                    this.refreshDays(this.year, this.month);
-                }
+                this.refreshDays(this.year, this.month);
+                // if (this.month === 0) {
+                //     this.refreshDays(this.year, 11);
+                // } else if (this.month === 11){
+                //     this.refreshDays(this.year, 0);
+                // } else {
+                //     this.refreshDays(this.year, this.month);
+                // }
                 
             },
             /**
