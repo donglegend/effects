@@ -35,7 +35,7 @@
                     </div>
                     <div class="date-body">
                         <span @click="resetDay(preMonthLastDay - preMonthDays + n, month-1)" class="cell gray" v-for="n in preMonthDays">{{preMonthLastDay - preMonthDays + n}}</span>
-                        <a @click="resetDay(n)" class="cell" :class="{today: isToday(n),current: curDay === n}" v-for="n in curMDays">{{n}}</a>
+                        <a @click="resetDay(n)" class="cell" :class="{current: curDay === n}" v-for="n in curMDays">{{n}}</a>
                         <span @click="resetDay(n, month+1)" class="cell gray" v-for="n in nextMonthDays">{{n}}</span>
                     </div>
                 </div>
@@ -156,13 +156,7 @@
                 return theDay.getDate();
             },
 
-            isToday: function(n) {
-                if (this.year === this.toYear && this.month === this.toMonth && n === this.today.getDate()) {
-                    return true;
-                } else {
-                    return false;
-                }
-            },
+           
             isTomonth: function(index) {
                 if (this.setYear === this.toYear && index === this.toMonth) {
                     return true;

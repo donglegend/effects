@@ -178,11 +178,6 @@
     color: #ccc;
 }
 
-.date-body .today,
-.date-body .today:hover {
-    background: #44b549;
-    color: #fff;
-}
 
 .date-body .current,
 .date-body .current:hover {
