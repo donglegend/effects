@@ -108,6 +108,12 @@
             resetDay: function(d, m) {
                 this.curDay = d;
                 this.month = m || this.month;
+                if(this.month < 0){
+                    this.month = 0;
+                }
+                if(this.month > 11){
+                    this.month = 11;
+                }
                 var m = this.month + 1;
                 if (m < 10) {
                     m = '0' + m;
@@ -117,6 +123,15 @@
                 }
                 this.newDate = this.year + '-' + m + '-' + d;
                 this.show = false;
+
+                if (this.month === 0) {
+                    this.refreshDays(this.year - 1, 11);
+                } else if (this.month === 11){
+                    this.refreshDays(this.year + 1, 0);
+                } else {
+                    this.refreshDays(this.year, this.month);
+                }
+                
             },
             /**
              * { 选择月份 }
