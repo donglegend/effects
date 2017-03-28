@@ -21,7 +21,10 @@
     <script type="text/x-template" id="date-template">
         <div class="date-picker">
             <div @click="show = !show" class="date-input">{{newDate}}</div>
-            <div class="date-panel animated" :class="[show ? 'fadeInDown' : 'fadeInUp']" v-show="show">
+            <transition
+                        enter-active-class="animated fadeInDown"
+                        leave-active-class="animated fadeOutUp">
+            <div class="date-panel" v-show="show">
                 <div v-if="panelType === 'day'">
                     <div class="date-header">
                         <div class="date-b">
@@ -52,6 +55,7 @@
                     </div>
                 </div>
             </div>
+            </transition>
         </div>
     </script>
     <script>
