@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+    * {
+        padding: 0;
+        margin: 0;
+    }
+    
+    html {
+        background: #000;
+    }
+    </style>
+</head>
+
+<body>
+    <canvas id="donglegend">your browser is not support canvas!</canvas>
+    <script type="text/javascript" src="src/utils/requestAnimationFrame.js"></script>
+    <script type="text/javascript" src="src/utils/Tween.js"></script>
+    <script type="text/javascript">
+    var W = window.innerWidth,
+        H = window.innerHeight;
+
+    var canvas = document.getElementById("donglegend");
+    canvas.width = W;
+    canvas.height = H;
+
+    var ctx = canvas.getContext("2d");
+
+    var canvasData = [];
+
+    var easing = Tween[TweenE[1]];
+
+    var RATIO = 1;
+    var img = null;
+
+    Init();
+
+    function Init() {
+        drawBg();
+        drawImg("images/baihu.jpg");
+
+        loop();
+    }
+
+
+    function drawBg() {
+        ctx.fillStyle = "#000000";
+        ctx.fillRect(0, 0, W, H);
+    }
+
+    function drawImg(url) {
+        img = new Image();
+        img.onload = function() {
+            var _x = (W - img.width) / 2,
+                _y = (H - img.height) / 2;
+            ctx.drawImage(img, 0, 0, img.width * RATIO, img.height * RATIO, _x, _y, img.width, img.height);
+        }
+        img.src = url;
+    }
+
+
+    var addY = 3;
+    var curY = 0;
+
+    function drawPar() {
+    	var _x = (W - img.width) / 2,
+            _y = (H - img.height) / 2;
+        curY += addY;
+        ctx.drawImage(img, 0, curY, img.width * RATIO, img.height * RATIO - curY, _x, _y+curY, img.width, img.height - curY);
+
+        var arr = [];  
+        for(i=0; i<img.width; i += 3){  
+            var addX = 3;  
+            if(i+addX > img.width){  
+                addX = img.width - i;  
+            }  
+            // bitmapdata = new LBitmapData(imglist["img"],i,mainBitmap.y-addY,addX,addY);  
+            // bitmap = new LBitmap(bitmapdata);  
+            // bitmap.x = i;  
+            // bitmap.y = mainBitmap.y-addY;  
+            // backLayer.addChild(bitmap);  
+            
+            arr.push(bitmap);  
+        }  
+    }
+
+
+    function getRandomColor() {
+        return "#" + ("00000" + ((Math.random() * 16777215 + 0.5) >> 0).toString(16)).slice(-6);
+    }
+
+    function random(n, m) {
+        var c = m - n + 1;
+        return Math.floor(Math.random() * c + n);
+    }
+
+
+
+    // 系统主循环
+    function loop() {
+        ctx.clearRect(0, 0, W, H);
+        drawBg();
+        drawPar();
+        requestAnimationFrame(loop);
+    }
+    </script>
+</body>
+
+</html>

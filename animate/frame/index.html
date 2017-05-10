@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="author" content="dongsheng">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta id="viewport" name="viewport" content="width=device-width,height=device-height,initial-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="grey">
+    <meta name="format-detection" content="telephone=no;address=no;email=no">
+    <title>序列帧动画</title>
+    <style type="text/css" media="screen">
+    * {
+        padding: 0;
+        margin: 0;
+    }
+
+    </style>
+</head>
+
+<body>
+    <div id="donglegend"></div>
+    <script type="text/javascript">
+    /**
+     *  帧动画就是一组图片集合的轮播
+     */
+
+    var _W = window.innerWidth,
+        _H = window.innerHeight,
+        _speed = 1000 / 10,
+        loopTimer = null,
+        canvasObj = null,
+        context = null,
+        imageList = [],
+        animateList = [],
+        animateAction = 0,
+        animateCurframe = 0;
+
+
+    main();
+
+
+    function main() {
+        setCanvas("donglegend", _W, _H);
+        loadResource({
+        	'id': 'dongsheng',
+        	'src': 'images/dongsheng.jpg'
+        });
+    }
+
+    function setCanvas(id, w, h) {
+        var object = document.getElementById(id);
+        object.innerHTML = '<canvas id="' + id + '_canvas" width="' + _W +'" height="'+_H+'">' +
+            '</canvas>';
+
+        canvasObj = document.getElementById(id + "_canvas");
+        context = canvasObj.getContext("2d");
+    }
+
+    function loadResource(item){
+    	var image = new Image();
+        image.onload = function() {
+            imageList[item.id] = image;
+            animateList = divideCoordinate(image.width, image.height, 2, 4);
+            loop();
+        }
+        image.src = item.src;
+    }
+
+    function loop() {
+        if (loopTimer) {
+            clearInterval(loopTimer);
+        }
+        loopTimer = setInterval(function() {
+            show();
+        }, _speed)
+    }
+
+    function show() {
+        context.fillRect(0, 0, _W, _H);
+        draw(context, imageList['dongsheng'], animateList);
+    }
+
+
+    function divideCoordinate(w, h, row, col) {
+		var i, j, cw = w / col, ch = h / row, r = [], c;
+		for (i = 0; i < row; i++) {
+			c = [];
+			for (j = 0; j < col; j++) {
+				c.push({x : cw * j, y : ch * i, width : cw, height : ch});
+			}
+			r.push(c);
+		}
+		return r;
+	};
+
+    function draw(c, bitmapData, list) {
+
+    	if(animateCurframe >= list[animateAction].length-1){
+    		animateCurframe = 0;
+    		animateAction++;
+    		if(animateAction > list.length-1){
+    			animateAction = 0;
+    		}
+    	}else{
+    		animateCurframe++;
+    	}
+    	var p = list[animateAction][animateCurframe];
+    	c.drawImage(
+    		bitmapData,
+    		p.x,
+    		p.y,
+    		p.width,
+    		p.height,
+    		(_W - p.width)/2,
+    		(_H - p.height)/3,
+    		p.width,
+    		p.height
+    	)
+    }
+    </script>
+</body>
+
+</html>

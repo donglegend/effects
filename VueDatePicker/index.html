@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="author" content="dongsheng">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta id="viewport" name="viewport" content="width=device-width,height=device-height,initial-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="grey" />
+    <meta name="format-detection" content="telephone=no;address=no;email=no" />
+    <title>Vue DatePicker</title>
+    <link rel="stylesheet" type="text/css" href="index.css">
+</head>
+
+<body>
+    <div id="app">
+        <date-picker date=""></date-picker>
+    </div>
+    <script src="http://cdn.bootcss.com/vue/2.2.4/vue.min.js"></script>
+    <script type="text/x-template" id="date-template">
+        <div class="date-picker">
+            <div @click="show = !show" class="date-input">{{newDate}}</div>
+            <transition
+                        enter-active-class="animated fadeInDown"
+                        leave-active-class="animated fadeOutUp">
+            <div class="date-panel" v-show="show">
+                <div v-if="panelType === 'day'">
+                    <div class="date-header">
+                        <div class="date-b">
+                            <a @click="preMonth" class="pre">&lt;</a>
+                            <a @click="selectMonth" class="date">{{month+1}}月 {{year}}年</a>
+                            <a @click="nextMonth" class="next">&gt;</a>
+                        </div>
+                        <div class="day-b">
+                            <span class="cell" v-for="cell in weekName">{{cell}}</span>
+                        </div>
+                    </div>
+                    <div class="date-body">
+                        <span @click="resetDay(preMonthLastDay - preMonthDays + n, month-1)" class="cell gray" v-for="n in preMonthDays">{{preMonthLastDay - preMonthDays + n}}</span>
+                        <a @click="resetDay(n)" class="cell" :class="{current: curDay === n}" v-for="n in curMDays">{{n}}</a>
+                        <span @click="resetDay(n, month+1)" class="cell gray" v-for="n in nextMonthDays">{{n}}</span>
+                    </div>
+                </div>
+                <div v-if="panelType === 'month'">
+                    <div class="date-header">
+                        <div class="date-b">
+                            <a @click="setYear -= 1" class="pre">&lt;</a>
+                            <a>{{setYear}}年</a>
+                            <a @click="setYear += 1" class="next">&gt;</a>
+                        </div>
+                    </div>
+                    <div class="date-body">
+                        <a @click="resetMonth(index)" class="cell month" :class="{today: isTomonth(index), current: curMonth === index}" v-for="(cell, index) in monthName">{{cell}}</a>
+                    </div>
+                </div>
+            </div>
+            </transition>
+        </div>
+    </script>
+    <script>
+    Vue.component('date-picker', {
+        template: "#date-template",
+        data: function() {
+            return {
+                weekName: ['周日', '周一', '周二', '周三', '周四', '周五', '周六'],
+                monthName: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
+                newDate: '', //新选择日期
+                today: '', //当前日期
+                toYear: '', //当前年
+                toMonth: '', //当前月
+                panelType: 'day', //面板显示类型
+                year: '', //显示年份
+                month: '', //显示月份
+                curMDays: '', //当前月日期数
+                preMonthLastDay: '', //上个月最后一天
+                preMonthDays: '', //显示上个月的天数
+                nextMonthDays: '', //显示下个月的天数
+                curDay: '', //选中的日期
+                setYear: '', //设置years
+                curMonth: '',
+                show: false //面板show/hide
+            }
+        },
+        props: ['date'],
+        methods: {
+            /**
+             * { 刷新日期天面板 }
+             *
+             * @param      {<type>}  year    The year
+             * @param      {number}  month   The month
+             */
+            refreshDays: function(year, month) {
+                this.year = year;
+                this.month = month;
+                this.curMDays = this.getMonthDays(year, month + 1);
+                if (month === 0) {
+                    this.preMonthLastDay = this.getMonthDays(year, 12);
+                } else {
+                    this.preMonthLastDay = this.getMonthDays(year, month);
+                }
+                firstDay = new Date(year, month, 1);
+                this.preMonthDays = firstDay.getDay();
+                lastDay = new Date(year, month, this.curMDays);
+                this.nextMonthDays = 6 - lastDay.getDay();
+            },
+            /**
+             * { 确定选择 }
+             *
+             * @param      {(number|string)}  n       { parameter_description }
+             */
+            resetDay: function(d, m) {
+                this.curDay = d;
+                this.month = m || this.month;
+                if(this.month < 0){
+                    this.month = 11;
+                    this.year = this.year - 1;
+                }
+                if(this.month > 11){
+                    this.month = 0;
+                    this.year = this.year + 1;
+                }
+                var m = this.month + 1;
+                if (m < 10) {
+                    m = '0' + m;
+                }
+                if (d < 10) {
+                    d = '0' + d;
+                }
+                this.newDate = this.year + '-' + m + '-' + d;
+                this.show = false;
+
+                this.refreshDays(this.year, this.month);
+                // if (this.month === 0) {
+                //     this.refreshDays(this.year, 11);
+                // } else if (this.month === 11){
+                //     this.refreshDays(this.year, 0);
+                // } else {
+                //     this.refreshDays(this.year, this.month);
+                // }
+                
+            },
+            /**
+             * { 选择月份 }
+             */
+            selectMonth: function() {
+                this.setYear = this.year;
+                this.curMonth = this.month;
+                this.panelType = 'month';
+            },
+
+            resetMonth: function(index) {
+                this.refreshDays(this.setYear, index);
+                this.panelType = 'day';
+            },
+
+            preMonth: function() {
+                if (this.month === 0) {
+                    this.refreshDays(this.year - 1, 11);
+                } else {
+                    this.refreshDays(this.year, this.month - 1);
+                }
+                this.curDay = '';
+            },
+
+            nextMonth: function() {
+                if (this.month === 11) {
+                    this.refreshDays(this.year + 1, 0);
+                } else {
+                    this.refreshDays(this.year, this.month + 1);
+                }
+                this.curDay = '';
+            },
+
+
+            getMonthDays: function(year, month) {
+                var theDay = new Date(year, month, 0);
+                return theDay.getDate();
+            },
+
+           
+            isTomonth: function(index) {
+                if (this.setYear === this.toYear && index === this.toMonth) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        },
+        mounted: function() {
+            this.today = new Date();
+            this.toYear = this.today.getFullYear();
+            this.toMonth = this.today.getMonth();
+            if (this.date) {
+                var D = this.date.split('-');
+                this.refreshDays(+D[0], +D[1] - 1);
+                this.curDay = +D[2];
+                this.newDate = this.date;
+            } else {
+                this.refreshDays(this.toYear, this.toMonth);
+                this.newDate = this.toYear + '-' + (this.toMonth + 1) + '-' + this.today.getDate()
+            }
+        }
+    })
+
+
+    var vm = new Vue({
+        el: '#app',
+    })
+    </script>
+</body>
+
+</html>
