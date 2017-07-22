@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="zh-cn">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+  <script src="js/zepto.min.js"></script>
+  <style>
+    .provice,.city,.section{
+      width:500px;
+      /*height:100px;*/
+      background: aqua;
+    }
+    .city,.section{
+      display:none;
+    }
+
+    .provice li,.city li,.section li{
+      list-style: none;
+      display:inline-block;
+      background: pink;
+      width:80px;
+      height:50px;
+      float:left;
+      margin:5px;
+      line-height: 50px;
+      text-align: center;
+    }
+    .city li{
+      background: greenyellow;
+    }
+    .section li{
+      background: orange;
+    }
+    .provice li.chooseProvice{
+      background: yellow;
+    }
+    .city li.chooseCity{
+      background: palegoldenrod;
+    }
+    .blockShow{
+      display:block!important;
+    }
+  </style>
+</head>
+<body>
+	<div>
+		<div class='provice'>
+			<ul>
+				<li>a</li>
+				<li>b</li>
+				<li>c</li>
+				<li>d</li>
+				<li>e</li>
+			</ul>
+      <div id='city'>
+        <ul class='city'>
+          <li>a</li>
+          <li>b</li>
+          <li>c</li>
+          <li>d</li>
+          <li>e</li>
+        </ul>
+        <div>
+          <ul class='section'>
+            <li>a</li>
+            <li>b</li>
+            <li>c</li>
+            <li>d</li>
+            <li>e</li>
+          </ul>
+        </div>
+      </div>
+		</div>
+    <div class='provice'>
+      <ul>
+        <li>!a</li>
+        <li>!b</li>
+        <li>!c</li>
+        <li>!d</li>
+        <li>!e</li>
+      </ul>
+      <div>
+        <ul class='city'>
+          <li>!a</li>
+          <li>!b</li>
+          <li>!c</li>
+          <li>!d</li>
+          <li>!e</li>
+        </ul>
+        <div>
+          <ul class='section'>
+            <li>!a</li>
+            <li>!b</li>
+            <li>!c</li>
+            <li>!d</li>
+            <li>!e</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+	</div>
+	<script>
+    $(".provice li").on("mouseover",function(e){
+      if($(this).hasClass("chooseProvice")){
+        $(this).removeClass("chooseProvice");
+      }else{
+        $(".chooseProvice").removeClass("chooseProvice");
+        $(this).addClass("chooseProvice");
+        $(".city,.section").removeClass("blockShow");
+      }
+      if($(".chooseProvice").length!=0){
+        $(this).parents(".provice").find(".city").addClass("blockShow");
+        var html = "";
+        for(var i = 0;i<5;i++){
+          html+="<li>"+this.innerHTML+i+"</li>";
+        }
+        $(this).parents(".provice").find("ul.city").html(html);
+        $(this).parents(".provice").find(".section").removeClass("blockShow");
+      }else{
+        $(".city").removeClass("blockShow");
+        $(".section").removeClass("blockShow");
+      }
+    });
+
+    $(".city").on("click","li",function(e){
+      if($(this).hasClass("chooseCity")){
+        $(this).removeClass("chooseCity");
+      }else{
+        $(".chooseCity").removeClass("chooseCity");
+        $(this).addClass("chooseCity");
+        $(".section").removeClass("blockShow");
+      }
+      if($(".chooseCity").length!=0){
+        $(this).parents(".provice").find(".section").addClass("blockShow");
+        var html = "";
+        for(var i = 0;i<5;i++){
+          html+="<li>~~"+this.innerHTML+i+"</li>";
+        }
+        $(this).parents(".provice").find("ul.section").html(html);
+      }else{
+        $(".section").removeClass("blockShow");
+      }
+    });
+	</script>
+</body>
+</html>
