@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./index.css">
+</head>
+
+<body>
+    <div id="stage">
+        <table class="chessboard" cellspacing="0" cellpadding="0">
+            <tbody id="box"></tbody>
+        </table>
+    </div>
+    <script src="./a.js"></script>
+    <script>
+        const el = document.getElementById('box')
+        main()
+        render(el)
+
+        function move(direction) {
+            const result = Move[direction](deepCopy(matrix))
+
+            const isInsert = isEqual(matrix, result)
+            if (!isInsert) {
+                matrix = result
+                insertVal()
+                render(el)
+            }
+        }
+
+        document.onkeyup = function (ev) {
+            switch (ev.keyCode) {
+                case 87:
+                    move('up')
+                    break;
+                case 83:
+                    move('down')
+                    break;
+                case 65:
+                    move('left')
+                    break;
+                case 68:
+                    move('right')
+                    break;
+            }
+        }
+
+        function judgeDirection(dx, dy) {
+            let minD = 5
+            if (Math.abs(dx) > minD || Math.abs(dy) > minD) {
+                if (dx === 0) {
+                    return dy < 0 ? 'up' : 'down'
+                }
+                if (dy === 0) {
+                    dx < 0 ? 'left' : 'right'
+                }
+                let ratio = dy / dx
+                if (Math.abs(ratio) > 1) {
+                    // up down
+                    return dy < 0 ? 'up' : 'down'
+                } else {
+                    // left right
+                    return dx < 0 ? 'left' : 'right'
+                }
+            }
+            return null
+        }
+        let startPos = null
+        let endPos = null
+        window.addEventListener('touchstart', function (ev) {
+            let pos = ev.touches[0]
+            startPos = {
+                x: pos.screenX,
+                y: pos.screenY
+            }
+            endPos = null
+        })
+        window.addEventListener('touchmove', function (ev) {
+            ev && ev.preventDefault()
+        }, {
+            passive: false
+        })
+        window.addEventListener('touchend', function (ev) {
+            let pos = ev.changedTouches[0]
+            endPos = {
+                x: pos.screenX,
+                y: pos.screenY
+            }
+            let dx = endPos.x - startPos.x
+            let dy = endPos.y - startPos.y
+            let d = judgeDirection(dx, dy)
+            d && move(d)
+
+        })
+    </script>
+</body>
+
+</html>
