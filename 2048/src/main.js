@@ -1,20 +1,16 @@
 var W = window.innerWidth,
     H = window.innerHeight,
     size = 4,
+    targetVal = 2048,
     margin = 8,
     initX = 20,
     initY = 100,
     bgCellSize = (W - initX * 2 - margin * (size + 1)) / size,
-    isFirst = true,
-    duration = 100,
+    duration = 80,
     canSwipe = true,
     score = 0
 
 var CHESSSPRITE = {}
-//////////////////////////////////////////////////////////
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 
 var States = {
     preload: function () {
@@ -66,8 +62,10 @@ var States = {
         }
     },
     render: function () {
-        // console.log('render')
         this.scoreText.setText('分数: ' + score)
+        if (score == targetVal) {
+            this.gameOver()
+        }
     },
     drawChessBoard: function () {
         // 绘制 棋盘 区域 背景
@@ -94,7 +92,9 @@ var States = {
         if (v === 0) {
             return
         }
-        var chessSprite = game.make.sprite((bgCellSize + margin) * j + margin, (bgCellSize + margin) * i + margin)
+        var x = (bgCellSize + margin) * j + margin,
+            y = (bgCellSize + margin) * i + margin
+        var chessSprite = game.make.sprite(x, y)
         this.chessBoard.addChild(chessSprite)
 
         var chessGraphics = game.make.graphics()
@@ -111,9 +111,11 @@ var States = {
         chessGraphics.addChild(chessText)
         chessSprite.addChild(chessGraphics)
 
-        chessSprite.anchor.setTo(1, 1)
-        chessSprite.scale.setTo(0, 0);
+        chessSprite.anchor.setTo(0.5, 0.5)
+        chessSprite.scale.setTo(0.6, 0.6);
+        // chessSprite.alpha = 0
         game.add.tween(chessSprite.scale).to({
+            // alpha: 1,
             x: 1,
             y: 1
         }, duration, Phaser.Easing.Sinusoidal.InOut, true).onComplete.add(function () {
@@ -125,14 +127,9 @@ var States = {
     renderChessBoard: function () {
         matrix.forEach(function (row, i) {
             row.forEach(function (col, j) {
-                if (isFirst) {
-                    this.drawChess(i, j, col.val, STYLES[col.val])
-                } else {
-
-                }
+                this.drawChess(i, j, col.val, STYLES[col.val])
             }, this)
         }, this)
-        isFirst = false
     },
     getChessSpriteKey: function (i, j, step, direction) {
         // 0 1 2 3
@@ -186,6 +183,13 @@ var States = {
     },
     handleSwipeRes: function (res, direction) {
         // 如果转换后结果 和  原矩阵 相同，不同执行合并动画渲染，
+        if (isEqual(matrix, res)) {
+            canSwipe = true
+            return
+        }
+        var self = this
+
+        const allTweens = []
         res.forEach(function (row, i) {
             row.forEach(function (col, j) {
                 if (col.val > 0) {
@@ -193,6 +197,12 @@ var States = {
                     if (col.merge) {
                         // 重新生成 结点
                         col.steps.forEach(function (item) {
+                            let _resolve, _reject
+                            const p1 = new Promise(function (resolve, reject) {
+                                _resolve = resolve
+                                _reject = reject
+                            })
+                            allTweens.push(p1)
                             let key = this.getChessSpriteKey(i, j, item, direction)
                             var sprite = CHESSSPRITE[key]
                             var pos = this.getOffsetPos(item, direction)
@@ -203,10 +213,17 @@ var States = {
                             }, duration, Phaser.Easing.Linear.None, true)
                             tween.onComplete.add(function () {
                                 this.kill()
+                                _resolve()
                             }, sprite)
                         }, this)
                         var newSprite = this.drawChess(i, j, col.val, STYLES[col.val])
                     } else {
+                        let __resolve, __reject
+                        const p2 = new Promise(function (resolve, reject) {
+                            __resolve = resolve
+                            __reject = reject
+                        })
+                        allTweens.push(p2)
                         var key = this.getChessSpriteKey(i, j, col.steps[0], direction)
                         var sprite = CHESSSPRITE[key]
                         var pos = this.getOffsetPos(col.steps[0], direction)
@@ -216,28 +233,34 @@ var States = {
                         }, duration, Phaser.Easing.Linear.None, true)
                         tween.onComplete.add(function () {
                             CHESSSPRITE[`${i}-${j}`] = this
+                            __resolve()
                         }, sprite)
                     }
                 }
             }, this)
-        }, this)
-        //动画执行完毕之后，添加 新元素 
-        setTimeout(function () {
+        }, self)
+
+        Promise.all(allTweens).then(function () {
             matrix = res
             var newItem = insertVal()
             if (newItem) {
-                this.drawChess(newItem.i, newItem.j, newItem.val, STYLES[newItem.val])
+                self.drawChess(newItem.i, newItem.j, newItem.val, STYLES[newItem.val])
             }
             // 判断 游戏是否结束
             clearMatrix()
             if (checkGameover()) {
                 // game over
-                document.getElementById('mask').style.display = 'block'
+                self.gameOver()
             }
-            canSwipe = true
-        }.bind(this), 110)
-
-
+            setTimeout(function () {
+                canSwipe = true
+            }, 20)
+        }, function (err) {
+            console.log('发生错误!')
+        })
+    },
+    gameOver: function () {
+        document.getElementById('mask').style.display = 'block'
     },
     swipeUP: function () {
         canSwipe = false

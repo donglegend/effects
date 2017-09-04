@@ -88,12 +88,12 @@ function checkGameover() {
         dx: 0,
         dy: 1
     }]
-    for (var i = 0; i < size.length; i++) {
-        for (var j = 0; j < size.length; j++) {
+    for (var i = 0; i < size; i++) {
+        for (var j = 0; j < size; j++) {
             for (var k = 0; k < d.length; k++) {
-                if (i + d[k].dx >= 0 && i + d[k].dx < size &&
-                    j + d[k].dy >= 0 && j + d[k].dy < size &&
-                    matrix[i][j].val == matrix[i + d[k].dx][j + d[k].dy].val) {
+                if (j + d[k].dx >= 0 && j + d[k].dx < size &&
+                    i + d[k].dy >= 0 && i + d[k].dy < size &&
+                    matrix[i][j].val == matrix[i + d[k].dy][j + d[k].dx].val) {
                     return false;
                 }
             }
