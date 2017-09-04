@@ -19,31 +19,14 @@ var States = {
     create: function () {
         // 设置舞台 背景色
         game.stage.setBackgroundColor('#fbf8ee')
-        //score
-        var scoreStyle = {
-            font: "bold 30px Arial",
-            fill: "#FFFFFF",
-            boundsAlignH: "center",
-            boundsAlignV: "middle"
-        };
-        var scoreSprite = game.add.sprite(10, 10);
-        var scoreGraphics = game.add.graphics(0, 0);
-        scoreGraphics.beginFill('0xedc850');
-        scoreGraphics.drawRoundedRect(10, 0, 200, 60, 5);
-        scoreGraphics.endFill();
-        scoreSprite.addChild(scoreGraphics);
-        this.scoreText = game.add.text(15, 15, '分数: ' + score, scoreStyle);
-        scoreSprite.addChild(this.scoreText);
 
-
-        this.drawChessBoard()
         init()
-        this.renderChessBoard()
-
-
+        this.drawScore()
+        this.drawChessBoard()
+        this.initChessBoard()
         // event 控制
         // game.input.onDown.add(() => {
-        //     console.log('ondown')
+        //     console.log('down')
         // })
         // game.input.onUp.add(function () {
         //     console.log('up')
@@ -67,6 +50,9 @@ var States = {
             this.gameOver()
         }
     },
+    /**
+     * 绘制棋盘背景
+     */
     drawChessBoard: function () {
         // 绘制 棋盘 区域 背景
         this.chessBoard = game.add.sprite(initX, initY)
@@ -75,8 +61,6 @@ var States = {
         chessBoardBackGraphics.drawRoundedRect(0, 0, W - initX * 2, W - initX * 2, 5)
         chessBoardBackGraphics.endFill()
         this.chessBoard.addChild(chessBoardBackGraphics)
-        // var margin = 8
-        // var bgCellSize = (W - 40 - margin * (size + 1)) / size
         for (var i = 0; i < size; i++) {
             for (var j = 0; j < size; j++) {
                 var bgCell = game.make.graphics()
@@ -87,8 +71,30 @@ var States = {
             }
         }
     },
+    /**
+     * 绘制 分数
+     */
+    drawScore: function () {
+        var scoreStyle = {
+            font: "bold 30px Arial",
+            fill: "#FFFFFF",
+            boundsAlignH: "center",
+            boundsAlignV: "middle"
+        };
+        var scoreSprite = game.add.sprite(10, 10);
+        var scoreGraphics = game.add.graphics(0, 0);
+        scoreGraphics.beginFill('0xedc850');
+        scoreGraphics.drawRoundedRect(10, 0, 200, 60, 5);
+        scoreGraphics.endFill();
+        scoreSprite.addChild(scoreGraphics);
+        this.scoreText = game.add.text(15, 15, '分数: ' + score, scoreStyle);
+        scoreSprite.addChild(this.scoreText);
+    },
+    /**
+     * 绘制 方块棋子
+     */
     drawChess: function (i, j, v, style) {
-        // 绘制 方块
+        // 绘制 棋子
         if (v === 0) {
             return
         }
@@ -124,13 +130,19 @@ var States = {
         CHESSSPRITE[`${i}-${j}`] = chessSprite
         return chessSprite
     },
-    renderChessBoard: function () {
+    /**
+     * 初始化 棋盘
+     */
+    initChessBoard: function () {
         matrix.forEach(function (row, i) {
             row.forEach(function (col, j) {
                 this.drawChess(i, j, col.val, STYLES[col.val])
             }, this)
         }, this)
     },
+    /**
+     * 根据矩阵坐标获取 chessSprite key
+     */
     getChessSpriteKey: function (i, j, step, direction) {
         // 0 1 2 3
         // up down left right
@@ -151,6 +163,9 @@ var States = {
         }
         return key
     },
+    /**
+     * 根据矩阵坐标 获取 chessSprite 位置偏移信息
+     */
     getOffsetPos: function (step, direction) {
         var pos
         switch (direction) {
@@ -181,6 +196,9 @@ var States = {
         }
         return pos
     },
+    /**
+     * 重要逻辑, 处理 棋子 重新排列 
+     */
     handleSwipeRes: function (res, direction) {
         // 如果转换后结果 和  原矩阵 相同，不同执行合并动画渲染，
         if (isEqual(matrix, res)) {
@@ -259,6 +277,9 @@ var States = {
             console.log('发生错误!')
         })
     },
+    /**
+     * gameOver
+     */
     gameOver: function () {
         document.getElementById('mask').style.display = 'block'
     },
