@@ -399,7 +399,11 @@
                     location.href = location.href
                 }, 2000)
             } else {
+                promiseAll = []
                 size = $(this).val()
+                numA = size
+                numB = 0
+                numC = 0
                 main()
             }
         })
