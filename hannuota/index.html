@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <style>
@@ -28,6 +28,13 @@
             position: relative;
             text-align: center;
             border-bottom: 4px #000 solid;
+        }
+
+        #myselect {
+            margin-top: 20px;
+            width: 100px;
+            height: 30px;
+            border: 2px solid #ddd;
         }
 
         #btn {
@@ -231,11 +238,24 @@
         <div class="bar bar2"></div>
         <div class="bar bar3"></div>
     </div>
+    选择层数：
+    <select id="myselect">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+    </select>
     <button id='btn'>开始</button>
     <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
     <script>
         var num = 0,
-            size = 8,
+            size = 5,
             numA = size,
             numB = 0,
             numC = 0;
@@ -261,7 +281,7 @@
 
         var promiseAll = [];
 
-        initDom()
+
 
         function move(n, a, b, c) {
             num++
@@ -281,12 +301,19 @@
                 move(n - 1, b, a, c);
             }
         }
-        move(size, 'a', 'b', 'c')
+
         // setTimeout(() => {
         //     executePromises(promiseAll).then(function () {
         //         runing = false
         //     })
         // }, 1000)
+        main()
+
+        function main() {
+            initDom()
+            move(size, 'a', 'b', 'c')
+        }
+
 
 
         function executePromises(tasks) {
@@ -362,6 +389,18 @@
                 executePromises(promiseAll).then(function () {
                     runing = false
                 })
+            }
+        })
+
+        $("#myselect").on('change', function () {
+            if (runing) {
+                alert('即将刷新页面，请选择层数后开始!')
+                setTimeout(function () {
+                    location.href = location.href
+                }, 2000)
+            } else {
+                size = $(this).val()
+                main()
             }
         })
     </script>
