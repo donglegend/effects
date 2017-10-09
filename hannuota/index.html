@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>东胜-汉诺塔</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        #__bs_notify__ {
+            opacity: 0;
+        }
+
+        body {
+            max-width: 750px;
+            min-width: 320px;
+            min-height: 100vh;
+            margin: 0 auto;
+            box-shadow: 0 0 20px rgba(0, 0, 0, .5)
+        }
+
+        #stage {
+            position: relative;
+            text-align: center;
+            border-bottom: 4px #000 solid;
+        }
+
+        #myselect {
+            margin-top: 20px;
+            width: 100px;
+            height: 30px;
+            border: 2px solid #ddd;
+        }
+
+        #btn {
+            display: block;
+            width: 100px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            background: #ccc;
+            margin: 20px auto;
+        }
+
+        #pies {
+            position: relative;
+            width: 100%;
+            height: 366px;
+        }
+
+        .bar {
+            position: absolute;
+            width: 4px;
+            height: 100%;
+            background: #000;
+            left: 0;
+            bottom: 0;
+            margin-left: -2px;
+            z-index: -1;
+        }
+
+        .bar1 {
+            left: 16.66%;
+        }
+
+        .bar2 {
+            left: 50%;
+        }
+
+        .bar3 {
+            left: 83.3%;
+        }
+
+        li {
+            position: absolute;
+            left: 0%;
+            width: 33%;
+            list-style: none;
+            margin: 3px auto;
+            height: 30px;
+            text-align: center;
+            -webkit-transition: all .6s;
+            transition: all .8s;
+        }
+
+        li:nth-child(1) span {
+            display: block;
+            margin: 0 auto;
+            width: 37%;
+            height: 100%;
+            background: #21bd22;
+            border-radius: 50%;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        li:nth-child(2) span {
+            display: block;
+            margin: 0 auto;
+            width: 44%;
+            height: 100%;
+            background: #6979ad;
+            border-radius: 50%;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        li:nth-child(3) span {
+            display: block;
+            margin: 0 auto;
+            width: 51%;
+            height: 100%;
+            background: #acc555;
+            border-radius: 50%;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        li:nth-child(4) span {
+            display: block;
+            margin: 0 auto;
+            width: 58%;
+            height: 100%;
+            background: #2139bd;
+            border-radius: 50%;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        li:nth-child(5) span {
+            display: block;
+            margin: 0 auto;
+            width: 65%;
+            height: 100%;
+            background: #37611e;
+            border-radius: 50%;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        li:nth-child(6) span {
+            display: block;
+            margin: 0 auto;
+            width: 72%;
+            height: 100%;
+            background: #7e6775;
+            border-radius: 50%;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        li:nth-child(7) span {
+            display: block;
+            margin: 0 auto;
+            width: 79%;
+            height: 100%;
+            background: #6b9216;
+            border-radius: 50%;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        li:nth-child(8) span {
+            display: block;
+            margin: 0 auto;
+            width: 86%;
+            height: 100%;
+            background: #74b1c6;
+            border-radius: 50%;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        li:nth-child(9) span {
+            display: block;
+            margin: 0 auto;
+            width: 93%;
+            height: 100%;
+            background: #6021bd;
+            border-radius: 50%;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        li:nth-child(10) span {
+            display: block;
+            margin: 0 auto;
+            width: 100%;
+            height: 100%;
+            background: #69b25b;
+            border-radius: 50%;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
+        }
+
+
+        .bt1 {
+            bottom: 324px;
+        }
+
+        .bt2 {
+            bottom: 288px;
+        }
+
+        .bt3 {
+            bottom: 252px;
+        }
+
+        .bt4 {
+            bottom: 216px;
+        }
+
+        .bt5 {
+            bottom: 180px;
+        }
+
+        .bt6 {
+            bottom: 144px;
+        }
+
+        .bt7 {
+            bottom: 108px;
+        }
+
+        .bt8 {
+            bottom: 72px;
+        }
+
+        .bt9 {
+            bottom: 36px;
+        }
+
+        .bt10 {
+            bottom: 0px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="stage">
+        <ul id="pies"></ul>
+        <div class="bar bar1"></div>
+        <div class="bar bar2"></div>
+        <div class="bar bar3"></div>
+    </div>
+    选择层数：
+    <select id="myselect">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+    </select>
+    <button id='btn'>开始</button>
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+        var num = 0,
+            size = 5,
+            numA = size,
+            numB = 0,
+            numC = 0;
+
+        var elPie = $('#pies')
+        var elBtn = $('#btn')
+        var runing = false
+
+        var POSINFO = {
+            'b': {
+                l: '33.33%',
+                b: 10 - numB
+            },
+            'c': {
+                l: '66.66%',
+                b: 10 - numC
+            },
+            'a': {
+                l: '0%',
+                b: 10 - numA
+            }
+        }
+
+        var promiseAll = [];
+
+
+
+        function move(n, a, b, c) {
+            num++
+            if (n == 1) {
+                promiseAll.push({
+                    n: n,
+                    from: a,
+                    to: c
+                })
+            } else {
+                move(n - 1, a, c, b);
+                promiseAll.push({
+                    n: n,
+                    from: a,
+                    to: c
+                })
+                move(n - 1, b, a, c);
+            }
+        }
+
+        // setTimeout(() => {
+        //     executePromises(promiseAll).then(function () {
+        //         runing = false
+        //     })
+        // }, 1000)
+        main()
+
+        function main() {
+            initDom()
+            move(size, 'a', 'b', 'c')
+        }
+
+
+
+        function executePromises(tasks) {
+            var result = Promise.resolve()
+            promiseAll.forEach(item => {
+                result = result.then(() => {
+                    return animateDom(item.n, item.from, item.to)
+                })
+            })
+            return result
+        }
+
+        function initDom() {
+            var html = '';
+            for (let i = 0; i < size; i++) {
+                html += '<li class="bt' + (10 - size + 1 + i) + '" id="p' + (i + 1) + '"><span></span></li>'
+            }
+            elPie.html(html)
+        }
+
+
+
+        function animateDom(n, start, end) {
+            return new Promise(function (resolve, reject) {
+                let cls = ''
+                switch (end) {
+                    case 'a':
+                        cls = 10 - numA
+                        break;
+                    case 'b':
+                        cls = 10 - numB
+                        break;
+                    case 'c':
+                        cls = 10 - numC
+                        break;
+                }
+                elPie.find('#p' + n).removeClass().addClass('bt' + cls).css({
+                    left: POSINFO[end].l
+                })
+                setTimeout(function () {
+                    switch (start) {
+                        case 'a':
+                            numA--
+                            break;
+                        case 'b':
+                            numB--
+                            break;
+                        case 'c':
+                            numC--
+                            break;
+                    }
+                    switch (end) {
+                        case 'a':
+                            numA++
+                            break;
+                        case 'b':
+                            numB++
+                            break;
+                        case 'c':
+                            numC++
+                            break;
+                    }
+                    resolve()
+                }, 1000)
+            })
+        }
+
+        elBtn.on('click', function () {
+            if (runing) {
+                return;
+            } else {
+                runing = true;
+                executePromises(promiseAll).then(function () {
+                    runing = false
+                })
+            }
+        })
+
+        $("#myselect").on('change', function () {
+            if (runing) {
+                alert('即将刷新页面，请选择层数后开始!')
+                setTimeout(function () {
+                    location.href = location.href
+                }, 2000)
+            } else {
+                promiseAll = []
+                size = $(this).val()
+                numA = size
+                numB = 0
+                numC = 0
+                main()
+            }
+        })
+    </script>
+</body>
+
+</html>
