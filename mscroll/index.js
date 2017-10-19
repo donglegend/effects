@@ -1,4 +1,7 @@
-(function (window, document) {
+(function () {
+    if (typeof window === 'undefined') {
+        return {};
+    }
     var rAF = window.requestAnimationFrame ||
         window.webkitRequestAnimationFrame ||
         window.mozRequestAnimationFrame ||
@@ -7,75 +10,6 @@
         function (callback) {
             window.setTimeout(callback, 1000 / 60);
         };
-
-    var MScroll = (function () {
-        function MScroll(el, options) {
-            this.wrapper = typeof el == 'string' ? document.querySelector(el) : el;
-            this.scroller = this.wrapper.children[0];
-            this.scrollerStyle = this.scroller.style;
-
-            this.options = {
-                disableTouch: !utils.hasTouch,
-                disableMouse: utils.hasTouch,
-
-                // 那个方向滚动
-                scrollX: false,
-                scrollY: true,
-
-                momentum: true, // 启动惯性
-
-                // 反弹效果
-                bounce: true,
-                bounceTime: 600,
-                bounceEasing: '',
-
-                // 为了增加下拉刷新功能，增加一个距离
-                topOffset: 0,
-
-                // 阻力系数，到达临界点 拖动阻力
-                dragForce: 3,
-                deceleration: 0.0006,
-
-                // 启用css3 过度
-                useTransition: true,
-                useTransform: true,
-
-                // 频繁更改窗口尺寸的话，最小调用 回调时间
-                resizePolling: 60,
-
-                // 是否需要 滚动条
-                scrollbars: true,
-
-                // 事件监听对象
-                bindToWrapper: typeof window.onmousedown === "undefined"
-            }
-            for (var i in options) {
-                this.options[i] = options[i];
-            }
-
-            // 3d加速
-            this.translateZ = utils.hasPerspective ? ' translateZ(0)' : '';
-            this.options.useTransition = utils.hasTransition && this.options.useTransition;
-            this.options.useTransform = utils.hasTransform && this.options.useTransform;
-
-
-            if (this.options.isUseAnimated) {
-                this.options.useTransition = false
-            }
-            // defaults
-            this.x = 0;
-            this.y = 0;
-            this.directionX = 0;
-            this.directionY = 0;
-
-            // 存储自定义事件
-            this._events = {};
-
-            this._init();
-        }
-        return MScroll
-    })();
-
 
     var utils = (function () {
         var me = {};
@@ -341,6 +275,76 @@
         return me;
     })();
 
+
+    var MScroll = (function () {
+        function MScroll(el, options) {
+            this.wrapper = typeof el == 'string' ? document.querySelector(el) : el;
+            this.scroller = this.wrapper.children[0];
+            this.scrollerStyle = this.scroller.style;
+
+            this.options = {
+                disableTouch: !utils.hasTouch,
+                disableMouse: utils.hasTouch,
+
+                // 那个方向滚动
+                scrollX: false,
+                scrollY: true,
+
+                momentum: true, // 启动惯性
+
+                // 反弹效果
+                bounce: true,
+                bounceTime: 600,
+                bounceEasing: '',
+
+                // 为了增加下拉刷新功能，增加一个距离
+                topOffset: 0,
+
+                // 阻力系数，到达临界点 拖动阻力
+                dragForce: 3,
+                deceleration: 0.0006,
+
+                // 启用css3 过度
+                useTransition: true,
+                useTransform: true,
+
+                // 频繁更改窗口尺寸的话，最小调用 回调时间
+                resizePolling: 60,
+
+                // 是否需要 滚动条
+                scrollbars: false,
+                scrollbarsFade: true,
+
+                // 事件监听对象
+                bindToWrapper: typeof window.onmousedown === "undefined"
+            }
+            for (var i in options) {
+                this.options[i] = options[i];
+            }
+
+            // 3d加速
+            this.translateZ = utils.hasPerspective ? ' translateZ(0)' : '';
+            this.options.useTransition = utils.hasTransition && this.options.useTransition;
+            this.options.useTransform = utils.hasTransform && this.options.useTransform;
+
+
+            if (this.options.isUseAnimated) {
+                this.options.useTransition = false
+            }
+            // defaults
+            this.x = 0;
+            this.y = 0;
+            this.directionX = 0;
+            this.directionY = 0;
+
+            // 存储自定义事件
+            this._events = {};
+
+            this._init();
+        }
+        return MScroll
+    })();
+
     MScroll.prototype = {
         version: '0.0.1',
         constructor: MScroll,
@@ -381,7 +385,7 @@
             if (this.options.useTransition && this.isInTransition) {
                 this._transitionTime();
                 this.isInTransition = false;
-                pos = this.getComputedPosition();
+                var pos = this.getComputedPosition();
                 this._translate(Math.round(pos.x), Math.round(pos.y));
                 this._fire('scrollEnd');
             } else if (!this.options.useTransition && this.isAnimating) {
@@ -543,10 +547,10 @@
             }
         },
         _resize: function () {
-            var that = this;
+            var self = this;
             clearTimeout(this.resizeTimeout);
             this.resizeTimeout = setTimeout(function () {
-                that.refresh();
+                self.refresh();
             }, this.options.resizePolling);
         },
         // 是否到达临界点，重置位置
@@ -688,6 +692,9 @@
             var wrapperRect = utils.getRect(this.wrapper);
             this.wrapperWidth = wrapperRect.width;
             this.wrapperHeight = wrapperRect.height;
+
+            this.wrapper.style['overflow'] = 'hidden';
+            this.wrapper.style['touchAction'] = 'none';
             // 重置 视图
             var rect = utils.getRect(this.scroller);
             this.scrollerWidth = rect.width;
@@ -811,6 +818,7 @@
             }
         },
         _initIndicators: function () {
+            var self = this;
             this.indicators = [];
             if (this.options.scrollY) {
                 var el = Indicator.createDefaultScrollbar('v');
@@ -833,6 +841,24 @@
                     this.indicators[i].refresh.call(this.indicators[i])
                 }
             })
+            if (this.options.scrollbarsFade) {
+                this.on('scrollStart', function () {
+                    mapIndicators(function () {
+                        this.fade(1)
+                    })
+                })
+                this.on('scrollEnd', function () {
+                    mapIndicators(function () {
+                        this.fade()
+                    })
+                })
+            }
+
+            function mapIndicators(fn) {
+                for (var i = self.indicators.length; i--;) {
+                    fn.call(self.indicators[i])
+                }
+            }
         }
     }
 
@@ -914,6 +940,20 @@
                 return;
             }
             this.indicatorStyle[durationProp] = time + 'ms';
+        },
+        fade: function (v) {
+
+            var self = this;
+
+            clearTimeout(this.fadeTimeout)
+
+            var time = v ? 250 : 500,
+                delay = v ? 0 : 300;
+            v = v ? '1' : '0'
+            this.wrapperStyle[utils.style.transitionDuration] = time + 'ms';
+            this.fadeTimeout = setTimeout(function () {
+                self.wrapperStyle.opacity = v
+            }, delay)
         }
     }
 
@@ -926,4 +966,4 @@
     } else {
         window.MScroll = MScroll;
     }
-})(window, document)
+})()

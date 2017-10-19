@@ -217,7 +217,8 @@
             topOffset: -elDown.clientHeight,
             bounceTime: 300,
             isUseAnimated: false,
-            deceleration: 0.0006
+            deceleration: 0.0006,
+            scrollbars: true,
         })
 
 
@@ -254,7 +255,7 @@
                 console.log('刷新加载')
                 elDown.className = 'down loading'
                 timer = setTimeout(function () {
-                    elList.innerHTML = createHtml() + elList.innerHTML
+                    elList.innerHTML = createHtml()
                     elDown.className = 'down drag'
                     elUp.className = 'up drag'
                     self.refresh();
@@ -268,7 +269,7 @@
                     elUp.className = 'up drag'
                     self.refresh();
                 }, 800)
-            } else if (this.y < this.maxScrollY + 100) {
+            } else if (this.y < this.maxScrollY + 50) {
                 console.log('自动加载')
                 elUp.className = 'up loading'
                 timer = setTimeout(function () {
@@ -276,7 +277,7 @@
                     elDown.className = 'down drag'
                     elUp.className = 'up drag'
                     self.refresh();
-                }, 2000)
+                }, 800)
             } else {
                 elDown.className = 'down drag'
                 elUp.className = 'up drag'
