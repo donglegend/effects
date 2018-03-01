@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>myScroll</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        #__vconsole {
+            display: none;
+        }
+
+        html {
+            -ms-touch-action: none;
+            padding-top: 60px;
+        }
+
+        .down,
+        .up {
+            position: relative;
+            text-align: center;
+            width: 100%;
+            height: 60px;
+            line-height: 60px;
+            transition: all .3s;
+            background: #ccc;
+            transition: all .3s;
+        }
+
+        .down::after,
+        .up::after {
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            transition: all .3s;
+        }
+
+        .down {
+            top: 0;
+            color: #fff;
+        }
+
+        .up {
+            bottom: 0;
+        }
+
+        .down.loading::after {
+            background: blue;
+            content: '正在加载...'
+        }
+
+        .down.drag::after {
+            background: red;
+            content: '下拉刷新'
+        }
+
+        .down.loosen::after {
+            background: green;
+            content: '松开加载'
+        }
+
+        .up.drag::after {
+            content: '上拉加载更多'
+        }
+
+        .up.loosen::after {
+            content: '松开加载'
+        }
+
+        .up.loading::after {
+            content: '正在加载...'
+        }
+
+        #stage {
+            position: relative;
+            width: 300px;
+            height: 400px;
+            background: #ccc;
+            margin: 0px auto;
+            overflow: hidden;
+            touch-action: none;
+            transition: all .3s;
+        }
+        /* .MScrollVerticalBar {
+            position: absolute;
+            z-index: 9999;
+            width: 5px;
+            bottom: 2px;
+            top: 2px;
+            right: 1px;
+            overflow: hidden;
+        }
+
+        .indicatorBar {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            position: absolute;
+
+            width: 100%;
+            height: 30%;
+
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 4px;
+        } */
+
+        .scroll {
+            background: pink;
+        }
+
+
+        ul li {
+            padding: 8px;
+            background: #efefef;
+            margin-bottom: 2px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="stage">
+        <div class="scroll">
+            <div class="down"></div>
+            <ul id="list">
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>4</li>
+                <li>5</li>
+                <li>6</li>
+                <li>7</li>
+                <li>8</li>
+                <li>9</li>
+                <li>10</li>
+                <!-- <li>11</li>
+                <li>12</li>
+                <li>13</li>
+                <li>14</li>
+                <li>15</li>
+                <li>16</li>
+                <li>17</li>
+                <li>18</li>
+                <li>19</li>
+                <li>20</li>
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>4</li>
+                <li>5</li>
+                <li>6</li>
+                <li>7</li>
+                <li>8</li>
+                <li>9</li>
+                <li>10</li>
+                <li>11</li>
+                <li>12</li>
+                <li>13</li>
+                <li>14</li>
+                <li>15</li>
+                <li>16</li>
+                <li>17</li>
+                <li>18</li>
+                <li>19</li>
+                <li>20</li>
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>4</li>
+                <li>5</li>
+                <li>6</li>
+                <li>7</li>
+                <li>8</li>
+                <li>9</li>
+                <li>10</li>
+                <li>11</li>
+                <li>12</li>
+                <li>13</li>
+                <li>14</li>
+                <li>15</li>
+                <li>16</li>
+                <li>17</li>
+                <li>18</li>
+                <li>19</li>
+                <li>20</li> -->
+
+            </ul>
+            <div class="up"></div>
+        </div>
+    </div>
+    <script>
+        // var vConsole = new VConsole();
+        // document.addEventListener("touchmove", function (e) {
+        //     e && e.preventDefault()
+        // }, {
+        //     capture: false,
+        //     passive: false
+        // });
+    </script>
+    <script src="./index.js"></script>
+    <script>
+        var listIndex = 11;
+        var elDown = document.querySelector('.down'),
+            elUp = document.querySelector('.up');
+        var elList = document.querySelector('#list')
+        var timer = null;
+        var myScroll = new MScroll('#stage', {
+            topOffset: -elDown.clientHeight,
+            bounceTime: 300,
+            isUseAnimated: false,
+            deceleration: 0.0006,
+            scrollbars: true,
+        })
+
+
+        // myScroll.on('scroll', function () {
+        //     // console.log(this.directionY)
+        //     // console.log(this.x, this.y)
+        // })
+
+        // myScroll.on('scrollEnd', function () {
+
+        // })
+
+
+        // -elDown.clientHeight
+
+        myScroll.on('scrollStart', function () {
+            clearTimeout(timer)
+        })
+        myScroll.on('scroll', function () {
+            if (this.y > 5) {
+                this.minScrollY = 0;
+                elDown.className = 'down loosen'
+            } else if (this.y > this.minScrollY && this.y < 5) {
+                elDown.className = 'down drag'
+            } else if (this.y > (this.maxScrollY + 5)) {
+                elUp.className = 'up drag'
+            } else if (this.y < (this.maxScrollY - 5)) {
+                elUp.className = 'up loosen'
+            }
+        })
+        myScroll.on('scrollEnd', function () {
+            var self = this;
+            if (elDown.className.indexOf('loosen') > -1) {
+                console.log('刷新加载')
+                elDown.className = 'down loading'
+                timer = setTimeout(function () {
+                    elList.innerHTML = createHtml()
+                    elDown.className = 'down drag'
+                    elUp.className = 'up drag'
+                    self.refresh();
+                }, 800)
+            } else if (elUp.className.indexOf('loosen') > -1) {
+                console.log('更多加载')
+                elUp.className = 'up loading'
+                timer = setTimeout(function () {
+                    elList.innerHTML += createHtml()
+                    elDown.className = 'down drag'
+                    elUp.className = 'up drag'
+                    self.refresh();
+                }, 800)
+            } else if (this.y < this.maxScrollY + 50) {
+                console.log('自动加载')
+                elUp.className = 'up loading'
+                timer = setTimeout(function () {
+                    elList.innerHTML += createHtml()
+                    elDown.className = 'down drag'
+                    elUp.className = 'up drag'
+                    self.refresh();
+                }, 800)
+            } else {
+                elDown.className = 'down drag'
+                elUp.className = 'up drag'
+                self.refresh();
+            }
+
+        })
+
+        function createHtml() {
+            var html = ''
+            var num = 10;
+            while (num) {
+                html += '<li>' + listIndex++ + '</li>'
+                num--;
+            }
+            return html
+        }
+    </script>
+</body>
+
+</html>
