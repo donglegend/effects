@@ -5,11 +5,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>那年春，那片湖</title>
     <link rel="stylesheet" href="./index.css">
     <style>
         p {
             height: 1rem;
+        }
+
+        .mask {
+            position: fixed;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            background: #000;
+        }
+
+        .startbtn {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            -webkit-transform: translate(-50%, -55%);
+            transform: translate(-50%, -55%);
+            width: 60%;
+            color: #333;
+            line-height: 4rem;
+            background: #efefef;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: bold;
         }
     </style>
     <script type="text/javascript" src="./index.js"></script>
@@ -55,7 +79,12 @@
         <br>
     </div>
     <div id="Wind"></div>
+    <div class="mask">
+        <div class="startbtn" id="startbtn">
+            讲一个故事
+        </div>
+    </div>
 </body>
-<audio src="./you.mp3" autoplay loop></audio>
+<audio src="./you.mp3" loop id="bgSound"></audio>
 
 </html>

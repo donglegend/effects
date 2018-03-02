@@ -113,6 +113,8 @@ var Wind = (function () {
 
 function main() {
     var ka = getEleById("kaSound");
+    var bg = getEleById("bgSound");
+    var startbtn = getEleById('startbtn');
     var txt = getEleById("txt").innerHTML;
     var ops = {
         "ele": "Wind",
@@ -123,8 +125,15 @@ function main() {
         }
     }
     var myWind = new Wind(ops);
-    myWind.run();
-    ka.play();
+    startbtn.onclick = function () {
+        startbtn.parentNode.parentNode.removeChild(startbtn.parentNode)
+        startbtn.onclick = null
+        myWind.run();
+        setTimeout(function () {
+            ka.play();
+        }, 500)
+        bg.play();
+    }
 }
 
 loadEvent(main);
