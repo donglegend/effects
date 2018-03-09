@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .main {
+            font-size: 48px;
+            text-align: center;
+            border: 2px #f90 solid;
+        }
+
+        .btn {
+            width: 150px;
+            height: 60px;
+            margin: 20px auto;
+            line-height: 60px;
+            text-align: center;
+            border-radius: 10px;
+            background: #398bfb;
+            color: #fff;
+            font-weight: bold;
+            font-size: 18px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app" class="main"></div>
+    <div id="btn" class="btn">选号</div>
+    <script src="./index.js"></script>
+    <script>
+        var elApp = document.querySelector('#app')
+        var elBtn = document.querySelector('#btn')
+
+        function run() {
+            elApp.innerHTML = main()
+        }
+
+        run()
+        elBtn.onclick = function () {
+            run()
+        }
+    </script>
+</body>
+
+</html>
