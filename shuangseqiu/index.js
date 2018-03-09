@@ -1,7 +1,7 @@
 function main() {
     var redBall = generateRedBall()
     var blueBall = generateBlueBall()
-    return redBall.join(', ') + ' | ' + blueBall
+    return redBall.join(',') + ' | ' + blueBall
 }
 
 
