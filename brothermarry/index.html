@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>我们结婚啦</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.2/css/swiper.min.css">
+    <!-- <link rel="stylesheet" href="./css/animate.min.css"> -->
+    <link rel="stylesheet" href="./css/style2.css">
+    <link rel="stylesheet" href="./css/yaoyue.css">
+    <link rel="stylesheet" href="./css/index.css">
+    <script>
+        (function (c, f) { var s = c.document; var b = s.documentElement; var m = s.querySelector('meta[name="viewport"]'); var n = s.querySelector('meta[name="flexible"]'); var a = 0; var r = 0; var l; var d = f.flexible || (f.flexible = {}); if (m) { console.warn("将根据已有的meta标签来设置缩放比例"); var e = m.getAttribute("content").match(/initial-scale=([d.]+)/); if (e) { r = parseFloat(e[1]); a = parseInt(1 / r) } } else { if (n) { var j = n.getAttribute("content"); if (j) { var q = j.match(/initial-dpr=([d.]+)/); var h = j.match(/maximum-dpr=([d.]+)/); if (q) { a = parseFloat(q[1]); r = parseFloat((1 / a).toFixed(2)) } if (h) { a = parseFloat(h[1]); r = parseFloat((1 / a).toFixed(2)) } } } } if (!a && !r) { var p = c.navigator.appVersion.match(/android/gi); var o = c.navigator.appVersion.match(/iphone/gi); var k = c.devicePixelRatio; if (o) { if (k >= 3 && (!a || a >= 3)) { a = 3 } else { if (k >= 2 && (!a || a >= 2)) { a = 2 } else { a = 1 } } } else { a = 1 } r = 1 / a } b.setAttribute("data-dpr", a); if (!m) { m = s.createElement("meta"); m.setAttribute("name", "viewport"); m.setAttribute("content", "initial-scale=" + r + ", maximum-scale=" + r + ", minimum-scale=" + r + ", user-scalable=no"); if (b.firstElementChild) { b.firstElementChild.appendChild(m) } else { var g = s.createElement("div"); g.appendChild(m); s.write(g.innerHTML) } } function i() { var u = window.orientation; var t = b.clientWidth; if (u === 90 || u === -90) { t = b.clientHeight } if (t / a > 540) { t = 540 * a } var v = t / 10; b.style.fontSize = v + "px"; d.rem = c.rem = v } c.addEventListener("resize", function () { clearTimeout(l); l = setTimeout(i, 300) }, false); c.addEventListener("pageshow", function (t) { if (t.persisted) { clearTimeout(l); l = setTimeout(i, 300) } }, false); if (s.readyState === "complete") { s.body.style.fontSize = 12 * a + "px" } else { s.addEventListener("DOMContentLoaded", function (t) { s.body.style.fontSize = 12 * a + "px" }, false) } i() })(window, window["lib"] || (window["lib"] = {}));
+    </script>
+</head>
+
+<body>
+    <div class="audio_btn">
+        <img id="musiceicon" src="./image/musicon.png" style="display: block;">
+    </div>
+    <audio id="sceneaudio" src="./audio/ab.mp3" autoplay="autoplay" loop="loop" style=""></audio>
+    <div class="swiper-container swiper-container-vertical">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <div class="pagebg"></div>
+                <div index="0" class="item showpage index0">
+                    <div class="amious" style="overflow: hidden; width: 100%; height: 100%; animation: expandOpen 3s ease 2s 1 both;">
+                        <img src="./image/a.png" class="el-bgimg" style="">
+                    </div>
+                </div>
+                <div index="1" class="item showpage index1">
+                    <div class="amious" style="overflow: hidden; width: 100%; height: 100%; animation: rotateIn 5s ease 0.1s 1 both;">
+                        <img src="./image/b.png" class="el-bgimg">
+                    </div>
+                </div>
+                <div index="2" class="item showpage index2">
+                    <div class="amious" style="overflow: hidden; width: 100%; height: 100%; animation: fadeInNormal 3s ease 3s 1 both;">
+                        <img src="./image/c.png" class="el-bgimg" style="display: block; width: 375px; height: 239.538px; top: 0px; left: 0px; border-radius: 0px; box-shadow: black 0px 0px 0px; border-style: none;">
+                    </div>
+                </div>
+                <div index="19" class="item showpage index19" style="">
+                    <div class="amious" style="overflow: hidden; width: 100%; height: 100%; animation: fadeInUp 1s ease 0.1s 1 both;">
+                        <img src="./image/d.png" style="display: block; width: 100%; height: 100%; top: 0px; left: 0px; border-radius: 0px; box-shadow: black 0px 0px 0px; border-style: none;">
+                    </div>
+                </div>
+                <div index="20" class="item showpage index20">
+                    <div class="amious" style="overflow: hidden; width: 100%; height: 100%; animation: fadeInNormal 3s ease 3s 1 both;">
+                        <img src="./image/e.gif" style="display: block; width: 100%; height: 100%; top: 0px; left: 0px; border-radius: 0px; box-shadow: black 0px 0px 0px; border-style: none;">
+                    </div>
+                </div>
+                <div index="21" class="item showpage index21" style="">
+                    <div class="amious" style="overflow: hidden; width: 100%; height: 100%; animation: fadeInUp 2s ease 1s 1 both;">
+                        <img src="./image/f.png" class="el-bgimg" style="display: block; width: 198.633px; height: 250.787px; top: 0px; left: 0px; border-radius: 0px; box-shadow: black 0px 0px 0px; border-style: none;">
+                    </div>
+                </div>
+
+                <div index="17" class="item showpage index17" style="">
+                    <div class="amious" style="overflow: hidden; width: 100%; height: 100%; animation: flipInY 2s ease 3s 1 both;">
+                        <img src="./image/g.png" style="display: block; width: 100%; height: 100%; top: 0px; left: 0px; border-radius: 0px; box-shadow: black 0px 0px 0px; border-style: none;">
+                    </div>
+                </div>
+                <div index="18" class="item showpage index18">
+                    <div class="amious" style="overflow: hidden; width: 100%; height: 100%; animation: flipInY 2s ease 3s 1 both;">
+                        <img src="./image/h.png" style="display: block; width: 100%; height: 100%; top: 0px; left: 0px; border-radius: 0px; box-shadow: black 0px 0px 0px; border-style: none;">
+                    </div>
+                </div>
+                <div index="22" class="item showpage index22">
+                    <div class="amious" style="overflow: hidden; width: 100%; height: 100%; animation: flipInY 2s ease 4s 1 both;">
+                        <div class="el-text" style="font-weight: normal; color: rgb(255, 255, 255); font-size: 0.6rem; line-height: 1.5rem; box-shadow: black 0px 0px 0px; letter-spacing: 0px;">许永胜 &amp; 王圆媛</div>
+                    </div>
+                </div>
+                <div index="23" class="item showpage index23" style="">
+                    <div class="amious" style="overflow: hidden; width: 100%; height: 100%; animation: zoomIn 1.5s ease 5s 1 both;">
+                        <div class="el-text" style="font-weight: normal; text-align: center; color: rgb(255, 255, 255); font-size: 0.45rem; line-height: 1.5; box-shadow: black 0px 0px 0px; letter-spacing: 0px;">公历2018年5月1日</div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="ani photo1" swiper-animate-effect="fadeIn" swiper-animate-duration="1s" swiper-animate-delay="0.3s">
+                    <img src="./image/p1.jpg" style="width: 100%; height: 100%;">
+                </div>
+                <div index="20" class="item showpage index20">
+                    <div class="amious" style="overflow: hidden; width: 100%; height: 100%; animation: fadeInNormal 3s ease 3s 1 both;">
+                        <img src="./image/e.gif" style="display: block; width: 100%; height: 100%; top: 0px; left: 0px; border-radius: 0px; box-shadow: black 0px 0px 0px; border-style: none;">
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="ani photo1" swiper-animate-effect="expandOpen" swiper-animate-duration="1s" swiper-animate-delay="0.3s">
+                    <img src="./image/p5.jpg" style="width: 100%; height: 100%;">
+                </div>
+                <div index="20" class="item showpage index20">
+                    <div class="amious" style="overflow: hidden; width: 100%; height: 100%; animation: fadeInNormal 3s ease 3s 1 both;">
+                        <img src="./image/e.gif" style="display: block; width: 100%; height: 100%; top: 0px; left: 0px; border-radius: 0px; box-shadow: black 0px 0px 0px; border-style: none;">
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="ani photo1" swiper-animate-effect="rotateInDownRight" swiper-animate-duration="1s" swiper-animate-delay="0.3s">
+                    <img src="./image/p6.jpg" style="width: 100%; height: 100%;">
+                </div>
+                <div index="20" class="item showpage index20">
+                    <div class="amious" style="overflow: hidden; width: 100%; height: 100%; animation: fadeInNormal 3s ease 3s 1 both;">
+                        <img src="./image/e.gif" style="display: block; width: 100%; height: 100%; top: 0px; left: 0px; border-radius: 0px; box-shadow: black 0px 0px 0px; border-style: none;">
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="ani photo1" swiper-animate-effect="rotateInDownLeft" swiper-animate-duration="1s" swiper-animate-delay="0.3s">
+                    <img src="./image/p7.jpg" style="width: 100%; height: 100%;">
+                </div>
+                <div index="20" class="item showpage index20">
+                    <div class="amious" style="overflow: hidden; width: 100%; height: 100%; animation: fadeInNormal 3s ease 3s 1 both;">
+                        <img src="./image/e.gif" style="display: block; width: 100%; height: 100%; top: 0px; left: 0px; border-radius: 0px; box-shadow: black 0px 0px 0px; border-style: none;">
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="ani photo1" swiper-animate-effect="zoomInDown" swiper-animate-duration="1s" swiper-animate-delay="0.3s">
+                    <img src="./image/p8.jpg" style="width: 100%; height: 100%;">
+                </div>
+                <div index="20" class="item showpage index20">
+                    <div class="amious" style="overflow: hidden; width: 100%; height: 100%; animation: fadeInNormal 3s ease 3s 1 both;">
+                        <img src="./image/e.gif" style="display: block; width: 100%; height: 100%; top: 0px; left: 0px; border-radius: 0px; box-shadow: black 0px 0px 0px; border-style: none;">
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="ani photo1" swiper-animate-effect="lightSpeedIn" swiper-animate-duration="1s" swiper-animate-delay="0.3s">
+                    <img src="./image/p9.jpg" style="width: 100%; height: 100%;">
+                </div>
+                <div index="20" class="item showpage index20">
+                    <div class="amious" style="overflow: hidden; width: 100%; height: 100%; animation: fadeInNormal 3s ease 3s 1 both;">
+                        <img src="./image/e.gif" style="display: block; width: 100%; height: 100%; top: 0px; left: 0px; border-radius: 0px; box-shadow: black 0px 0px 0px; border-style: none;">
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="ani photo1" swiper-animate-effect="stretchLeft" swiper-animate-duration="1s" swiper-animate-delay="0.3s">
+                    <img src="./image/p10.jpg" style="width: 100%; height: 100%;">
+                </div>
+                <div index="20" class="item showpage index20">
+                    <div class="amious" style="overflow: hidden; width: 100%; height: 100%; animation: fadeInNormal 3s ease 3s 1 both;">
+                        <img src="./image/e.gif" style="display: block; width: 100%; height: 100%; top: 0px; left: 0px; border-radius: 0px; box-shadow: black 0px 0px 0px; border-style: none;">
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="ani photo1" swiper-animate-effect="zoomIn" swiper-animate-duration="1s" swiper-animate-delay="0.3s">
+                    <img src="./image/p11.jpg" style="width: 100%; height: 100%;">
+                </div>
+                <div index="20" class="item showpage index20">
+                    <div class="amious" style="overflow: hidden; width: 100%; height: 100%; animation: fadeInNormal 3s ease 3s 1 both;">
+                        <img src="./image/e.gif" style="display: block; width: 100%; height: 100%; top: 0px; left: 0px; border-radius: 0px; box-shadow: black 0px 0px 0px; border-style: none;">
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="ani photo1" swiper-animate-effect="fadeInNormal" swiper-animate-duration="2s" swiper-animate-delay="0.3s">
+                    <img src="./image/p12.jpg" style="width: 100%; height: 100%;">
+                </div>
+                <div index="20" class="item showpage index20">
+                    <div class="amious" style="overflow: hidden; width: 100%; height: 100%; animation: fadeInNormal 3s ease 3s 1 both;">
+                        <img src="./image/e.gif" style="display: block; width: 100%; height: 100%; top: 0px; left: 0px; border-radius: 0px; box-shadow: black 0px 0px 0px; border-style: none;">
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="swiper-slide swiper-slide2">
+                <div class="ani photo2" swiper-animate-effect="fadeInRight" swiper-animate-duration="2s" swiper-animate-delay="0.3s">
+                    <img src="./image/p2.jpg" style="width: 100%; height: 100%;">
+                </div>
+                <div class="ani photo4" swiper-animate-effect="fadeInLeft" swiper-animate-duration="2s" swiper-animate-delay="0.3s">
+                    <img src="./image/p12.jpg" style="width: 100%; height: 100%;">
+                </div>
+                <div index="20" class="item showpage index20">
+                    <div class="amious" style="overflow: hidden; width: 100%; height: 100%; animation: fadeInNormal 3s ease 3s 1 both;">
+                        <img src="./image/e.gif" style="display: block; width: 100%; height: 100%; top: 0px; left: 0px; border-radius: 0px; box-shadow: black 0px 0px 0px; border-style: none;">
+                    </div>
+                </div>
+            </div> -->
+        </div>
+    </div>
+    <img src="./image/up.png" id="array" class="resize" style="width: 60px; height: 36px; bottom: 10%; left: 42%;">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.2/js/swiper.min.js"></script>
+    <script src="./js/swiper.animate1.0.3.min.js"></script>
+    <script src="./js/main.js"></script>
+</body>
+
+</html>

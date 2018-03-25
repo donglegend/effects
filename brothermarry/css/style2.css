@@ -1,0 +1,522 @@
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+ol,
+li,
+form,
+img,
+dl,
+dt,
+dd,
+table,
+th,
+td,
+blockquote,
+fieldset,
+div,
+strong,
+label,
+em {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+ul,
+ol,
+li {
+    list-style: none;
+}
+input,
+button {
+    margin: 0;
+    font-size: 12px;
+    vertical-align: middle;
+}
+body,
+select {
+    font: 14px/1.5 'Microsoft Yahei', SimHei, helvetica, arial, sans-serif;
+    margin: 0;
+    color: #3f3f3f;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    border: 0;
+}
+a {
+    text-decoration: none;
+    outline: none;
+    color: #3f3f3f;
+    -webkit-transition: all 400ms ease-out;
+    -mozilla-transition: all 400ms ease-out;
+    -ms-transition: all 400ms ease-out;
+    -o-transition: all 400ms ease-out;
+    transition: all 400ms ease-out;
+    cursor: pointer;
+}
+img,
+body {
+    -webkit-transition: all 400ms ease-out;
+    -mozilla-transition: all 400ms ease-out;
+    -ms-transition: all 400ms ease-out;
+    -o-transition: all 400ms ease-out;
+    transition: all 400ms ease-out;
+}
+a:hover {
+    text-decoration: none;
+    -webkit-transition: all 400ms ease-out;
+    -mozilla-transition: all 400ms ease-out;
+    -ms-transition: all 400ms ease-out;
+    -o-transition: all 400ms ease-out;
+    transition: all 400ms ease-out;
+}
+.cl {
+    height: 0;
+    font-size: 1px;
+    clear: both;
+    line-height: 0;
+}
+.none {
+    display: none;
+}
+*:focus {
+    outline: none;
+}
+i,
+em,
+ins,
+u {
+    font-style: normal;
+    text-decoration: none;
+}
+nav,
+footer,
+section,
+header,
+article {
+    display: block;
+}
+.wrap {
+    width: 1200px;
+    margin: 0 auto;
+    min-width: 1200px;
+}
+.fl {
+    float: left;
+}
+.fr {
+    float: right;
+}
+.pr {
+    position: relative;
+}
+.pa {
+    position: absolute;
+}
+.oh {
+    overflow: hidden;
+}
+.clearfix {
+    *zoom: 1;
+}
+.clearfix:before,
+.clearfix:after {
+    display: table;
+    content: '';
+    line-height: 0;
+}
+.clearfix:after {
+    clear: both;
+}
+.bgfff {
+    background: #fff;
+}
+input[type='submit'],
+input[type='reset'],
+input[type='button'],
+button {
+    -webkit-appearance: none;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+::-webkit-scrollbar-track:hover {
+    background: #eee;
+}
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: #b9b9b9;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #747474;
+}
+::-webkit-scrollbar-thumb:active {
+    background: #555;
+}
+
+input[type='text'],
+input[type='password'],
+textarea,
+select {
+    border: #e1e1e1 solid 1px;
+    font-size: 14px;
+    margin: 0;
+    padding: 0;
+    webkit-transition: all 300ms ease-out;
+    -mozilla-transition: all 300ms ease-out;
+    -ms-transition: all 300ms ease-out;
+    -o-transition: all 300ms ease-out;
+    transition: all 300ms ease-out;
+}
+input:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    border: 1px solid #1abd9b;
+    box-shadow: 0 0 4px rgba(103, 166, 217, 0.6);
+}
+
+.bgwrap {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    min-width: 1200px;
+}
+.bg {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+}
+.bg > img {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+.phoneBox {
+    position: absolute;
+    top: 90px;
+    left: 3px;
+    width: 320px;
+    height: 504px;
+    overflow: hidden;
+}
+.page {
+    position: relative;
+    display: none;
+}
+.current {
+    display: block;
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+.item {
+    position: absolute;
+}
+.amious {
+    width: 100%;
+    height: 100%;
+}
+.panel {
+    width: 34px;
+    height: 486px;
+    position: absolute;
+    right: -34px;
+    top: 0;
+}
+.pageprev,
+.pagenext {
+    width: 34px;
+    height: 75px;
+    padding-top: 11px;
+    background: #1abd9b;
+    font-size: 14px;
+    color: #fff;
+    text-align: center;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    margin-bottom: 30px;
+}
+.pageprev {
+    margin-top: 200px;
+}
+.el-bgimg {
+    width: 100%;
+    height: 100%;
+}
+.scenename {
+    position: absolute;
+    top: 55px;
+    left: 3px;
+    color: #fff;
+    width: 320px;
+    height: 30px;
+    line-height: 30px;
+    overflow: hidden;
+    text-align: center;
+}
+.share {
+    float: left;
+    margin-top: 150px;
+    margin-left: 300px;
+}
+.share p {
+    width: 250px;
+    text-align: center;
+    font-size: 16px;
+    color: #696969;
+    margin: 20px 0;
+}
+.share img {
+    width: 250px;
+    height: 250px;
+}
+.shareways {
+    margin: 20px 0;
+}
+.shareways ul {
+    overflow: hidden;
+}
+.shareways li {
+    float: left;
+    width: 50px;
+    height: 50px;
+}
+.shareways li a {
+    display: block;
+    width: 42px;
+    height: 42px;
+    margin: 4px auto;
+    border-radius: 50%;
+    box-shadow: 0 0 20px -10px #000;
+}
+.share > a {
+    display: block;
+    width: 150px;
+    height: 40px;
+    line-height: 40px;
+    background: #1abd9b;
+    color: #fff;
+    border-radius: 5px;
+    text-align: center;
+    margin: 0 auto;
+}
+.countDown-text {
+    white-space: nowrap;
+    line-height: 40px;
+    height: 40px;
+    padding-right: 15px;
+    padding-left: 15px;
+    height: 40px;
+}
+.num {
+    font-size: 30px;
+    vertical-align: 20px;
+}
+.dateText {
+    font-size: 17.5px;
+    vertical-align: 25px;
+    margin: 5px;
+}
+.audio_btn {
+    display: block;
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    right: 10px;
+    top: 10px;
+    z-index: 99999;
+}
+.audio_btn img {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.audio_btn.play {
+    animation: play 1.5s linear both infinite;
+    -webkit-animation: play 1.5s linear both infinite;
+}
+@-webkit-keyframes play {
+    0% {
+        transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+        -webkit-transform: rotate(360deg);
+    }
+}
+/* 
+@font-face {
+    font-family: 'weiruancuhei';
+    src: url('http://res.zhangu365.com/sys/fonts/msyhbd.ttf');
+}
+@font-face {
+    font-family: 'normal';
+    src: url('http://res.zhangu365.com/sys/fonts/msyh.ttf');
+}
+@font-face {
+    font-family: xiaoluti;
+    src: url('http://res.zhangu365.com/sys/fonts/5XVTJfDb.ttf');
+}
+@font-face {
+    font-family: yuanhei;
+    src: url('http://res.zhangu365.com/sys/fonts/17jUBw5i.ttf');
+}
+@font-face {
+    font-family: kaiti;
+    src: url('http://res.zhangu365.com/sys/fonts/mCN638YF.ttf');
+}
+@font-face {
+    font-family: fangsong;
+    src: url('http://res.zhangu365.com/sys/fonts/eaNhq6iV.ttf');
+}
+@font-face {
+    font-family: shouxiehaibaoti;
+    src: url('http://res.zhangu365.com/sys/fonts/fnqHYu8i.ttf');
+}
+
+@font-face {
+    font-family: pangyaer;
+    src: url('http://res.zhangu365.com/sys/fonts/WdH3j82h.ttf');
+}
+@font-face {
+    font-family: qiaoqiaoti;
+    src: url('http://res.zhangu365.com/sys/fonts/fEgCpJZv.ttf');
+}
+@font-face {
+    font-family: xiyuanti;
+    src: url('http://res.zhangu365.com/sys/fonts/B4ydZmkC.ttf');
+}
+@font-face {
+    font-family: jialiliti;
+    src: url('http://res.zhangu365.com/sys/fonts/gT14VcPb.ttf');
+}
+@font-face {
+    font-family: taotaoti;
+    src: url('http://res.zhangu365.com/sys/fonts/3APGuTX5.ttf');
+}
+
+@font-face {
+    font-family: nanati;
+    src: url('http://res.zhangu365.com/sys/fonts/bvs8XSmY.ttf');
+}
+@font-face {
+    font-family: nuoyeti;
+    src: url('http://res.zhangu365.com/sys/fonts/UadfkSxE.ttf');
+}
+@font-face {
+    font-family: xiaoyuti;
+    src: url('http://res.zhangu365.com/sys/fonts/k2ieDFgT.ttf');
+}
+@font-face {
+    font-family: qipaoti;
+    src: url('http://res.zhangu365.com/sys/fonts/1qv5gJcw.ttf');
+}
+@font-face {
+    font-family: yingxiang;
+    src: url('http://res.zhangu365.com/sys/fonts/vZPdHUVb.ttf');
+}
+
+@font-face {
+    font-family: tianzhengti;
+    src: url('http://res.zhangu365.com/sys/fonts/MNeqZiRI.ttf');
+}
+@font-face {
+    font-family: runhangti;
+    src: url('http://res.zhangu365.com/sys/fonts/SmPJWMu3.ttf');
+}
+@font-face {
+    font-family: qingcong;
+    src: url('http://res.zhangu365.com/sys/fonts/wrbIFB7m.ttf');
+}
+@font-face {
+    font-family: xihe;
+    src: url('http://res.zhangu365.com/sys/fonts/WC48az0G.ttf');
+}
+@font-face {
+    font-family: wukelili;
+    src: url('http://res.zhangu365.com/sys/fonts/4Q21Zxkc.ttf');
+}
+
+@font-face {
+    font-family: fangmeng;
+    src: url('http://res.zhangu365.com/sys/fonts/7CISxaBq.ttf');
+}
+@font-face {
+    font-family: growing;
+    src: url('http://res.zhangu365.com/sys/fonts/CGwVca8Z.ttf');
+}
+@font-face {
+    font-family: marshmallow;
+    src: url('http://res.zhangu365.com/sys/fonts/VjT34FUI.ttf');
+}
+@font-face {
+    font-family: jianxin;
+    src: url('http://res.zhangu365.com/sys/fonts/6cD4jaqA.ttf');
+}
+@font-face {
+    font-family: wanwan;
+    src: url('http://res.zhangu365.com/sys/fonts/9y43DjWM.ttf');
+}
+
+@font-face {
+    font-family: zhijiaodai;
+    src: url('http://res.zhangu365.com/sys/fonts/p48SYXMa.ttf');
+}
+@font-face {
+    font-family: huaban;
+    src: url('http://res.zhangu365.com/sys/fonts/YkS40DZ2.ttf');
+}
+@font-face {
+    font-family: degula;
+    src: url('http://res.zhangu365.com/sys/fonts/FWE1PmRv.ttf');
+}
+@font-face {
+    font-family: guiqi;
+    src: url('http://res.zhangu365.com/sys/fonts/UDpqkQVN.ttf');
+}
+@font-face {
+    font-family: liulianbabab;
+    src: url('http://res.zhangu365.com/sys/fonts/SjAy36xv.ttf');
+}
+
+@font-face {
+    font-family: guangrongzhanfang;
+    src: url('http://res.zhangu365.com/sys/fonts/5H8uwfVW.ttf');
+}
+@font-face {
+    font-family: huanyebojue;
+    src: url('http://res.zhangu365.com/sys/fonts/1sQRGkj9.ttf');
+}
+@font-face {
+    font-family: tiantianquan;
+    src: url('http://res.zhangu365.com/sys/fonts/UVQ2F5tB.ttf');
+}
+@font-face {
+    font-family: bansong;
+    src: url('http://res.zhangu365.com/sys/fonts/HQ1u5Bjx.ttf');
+}
+@font-face {
+    font-family: mitaoxiaogongju;
+    src: url('http://res.zhangu365.com/sys/fonts/yDk0iw76.ttf');
+}
+@font-face {
+    font-family: mangguodidi;
+} */
