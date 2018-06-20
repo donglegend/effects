@@ -11,14 +11,15 @@
 </head>
 
 <body>
-  <input type="number" placeholder="多边形边数" id="input" />
-  <button id="btn">开始</button>
+  <div>
+    <input type="number" placeholder="多边形边数" id="input" />
+    <button id="btn">开始</button>
+  </div>
   <canvas id="myCanvas" width="800" height="800" style="border:4px solid #d3d3d3;"></canvas>
   <script>
     // 获取 坐标点
     function getVertices(origin, r, n) {
       if (typeof n !== 'number') return;
-      if (n < 3) return;
       var ox = origin.x;
       var oy = origin.y;
       var angle = 360 / n;
@@ -43,7 +44,7 @@
     var ctx = canvas.getContext('2d');
 
 
-    var points = getVertices({ x: 100, y: 100 }, 100, 6);
+    var points = getVertices({ x: 100, y: 100 }, 100, 2);
 
     function draw(dots) {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -62,13 +63,29 @@
     draw(points.slice())
 
     btn.onclick = function () {
+      if (timer) {
+        clearInterval(timer)
+      }
       var n = input.value
-      if (n < 3) {
+      if (n < 2) {
         alert('太小')
       }
       var ps = getVertices({ x: 100, y: 100 }, 100, Number(n));
       draw(ps.slice())
     }
+
+    var num = 2, step = 1;
+    var timer = setInterval(function () {
+      if (num > 30) {
+        step = -1
+      }
+      if (num <= 2) {
+        step = 1
+      }
+      input.value = num
+      draw(getVertices({ x: 100, y: 100 }, 100, Number(num)).slice())
+      num += step
+    }, 100)
   </script>
 </body>
 
