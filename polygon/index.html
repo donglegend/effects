@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+  </style>
+</head>
+
+<body>
+  <input type="number" placeholder="多边形边数" id="input" />
+  <button id="btn">开始</button>
+  <canvas id="myCanvas" width="800" height="800" style="border:4px solid #d3d3d3;"></canvas>
+  <script>
+    // 获取 坐标点
+    function getVertices(origin, r, n) {
+      if (typeof n !== 'number') return;
+      if (n < 3) return;
+      var ox = origin.x;
+      var oy = origin.y;
+      var angle = 360 / n;
+      var i = 0;
+      var points = [];
+      var tempAngle = 0;
+      while (i < n) {
+        tempAngle = (i * angle * Math.PI) / 180;
+        points.push({
+          x: ox + r * Math.sin(tempAngle),
+          y: oy + r * Math.cos(tempAngle),
+        });
+        i++;
+      }
+      return points;
+    }
+  </script>
+  <script>
+    var btn = document.getElementById('btn');
+    var input = document.getElementById('input');
+    var canvas = document.getElementById('myCanvas');
+    var ctx = canvas.getContext('2d');
+
+
+    var points = getVertices({ x: 100, y: 100 }, 100, 6);
+
+    function draw(dots) {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      var first = dots.shift()
+      ctx.beginPath();
+
+      ctx.moveTo(first.x, first.y);
+      dots.forEach(dot => {
+        ctx.lineTo(dot.x, dot.y);
+      })
+      ctx.lineTo(first.x, first.y)
+
+      ctx.stroke();
+    }
+
+    draw(points.slice())
+
+    btn.onclick = function () {
+      var n = input.value
+      if (n < 3) {
+        alert('太小')
+      }
+      var ps = getVertices({ x: 100, y: 100 }, 100, Number(n));
+      draw(ps.slice())
+    }
+  </script>
+</body>
+
+</html>
