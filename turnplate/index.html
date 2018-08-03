@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>turnplate</title>
+
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+
+
+
+    #box {
+      position: relative;
+      width: 80vw;
+      height: 80vw;
+      border: 4px #ccc solid;
+      /* background: red; */
+      margin: 100px auto;
+      border-radius: 50%;
+    }
+
+    .turnplate {
+      height: 100%;
+      /* background: url(./images/turntable2.png) no-repeat center center; */
+      /* background-size: 100%; */
+    }
+
+    .pointer {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 20%;
+      height: 25%;
+      background: url(./images/pointer.png) no-repeat center center;
+      background-size: 100% 100%;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="box">
+    <div class="turnplate"></div>
+    <div class="pointer" id="btn"></div>
+  </div>
+  <!-- <canvas id="myCanvas" width="400" height="400" style="border:1px solid #d3d3d3; width: 200px; height: 200px;">
+    您的浏览器不支持 HTML5 canvas 标签。</canvas> -->
+  <script src="./main.js"></script>
+  <script>
+    let r = new RotatePlate({
+      el: document.querySelector('.turnplate'),
+      img: './images/turntable2.png',
+      animateType: 0,
+      angle: 0,
+      animateTo: 1800 + Math.floor(Math.random() * 360),
+      duration: 3000,
+      step: function (a) {
+        console.log(a)
+      },
+      callback: () => {
+        console.log('结束')
+      }
+    })
+    document.getElementById('btn').onclick = function () {
+      r.init({
+        animateTo: 1800 + Math.floor(Math.random() * 360)
+      })
+      r.rotate()
+    }
+
+  </script>
+</body>
+
+</html>
