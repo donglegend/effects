@@ -21,15 +21,21 @@ class RotatePlate {
       angle: 0,
       animateTo: 0,
       step: null,
-      easing: function(x, t, b, c, d) {
+      easing: function(t, b, c, d) {
         return -c * ((t = t / d - 1) * t * t * t - 1) + b;
       },
       duration: 3000,
       callback: () => {},
-      animateType: 0, // 0: canvas，1: css
+      animateType: 1, // 0: canvas，1: css
     };
     this._timer = null; // 动画，循环定时器
+
+    this.isFirstInit = true;
     this.init();
+    window.onresize = debounce(() => {
+      this._img = null;
+      this.init();
+    });
   }
   /**
    * 初始化类参数数据
@@ -83,6 +89,9 @@ class RotatePlate {
    * @param {*} url
    */
   _loaderImg(url) {
+    if (this._canvas) {
+      this.el.removeChild(this._canvas);
+    }
     this.WIDTH = this.el.offsetWidth;
     this.HEIGHT = this.el.offsetHeight;
     const img = new Image();
@@ -100,6 +109,11 @@ class RotatePlate {
 
       this._cnv.scale(this.devicePixelRatio, this.devicePixelRatio);
       this._cnv.drawImage(img, 0, 0, this.WIDTH, this.HEIGHT);
+
+      if (this.isFirstInit) {
+        this._rotate(this._angle);
+        this.isFirstInit = false;
+      }
     };
     img.src = url;
   }
@@ -138,7 +152,6 @@ class RotatePlate {
     } else {
       if (this._canvas || this.el) {
         var angle = this._parameters.easing(
-          0,
           actualTime - this._animateStartTime,
           this._animateStartAngle,
           this._parameters.animateTo - this._animateStartAngle,
@@ -183,6 +196,16 @@ class RotatePlate {
     this._cnv.translate(-this.WIDTH / 2, -this.HEIGHT / 2);
     this._cnv.drawImage(this._img, 0, 0, this.WIDTH, this.HEIGHT);
   }
+}
+
+function debounce(fn, delay = 300) {
+  let timer = null;
+  return function(...args) {
+    clearInterval(timer);
+    timer = setTimeout(() => {
+      fn.apply(this, args);
+    }, delay);
+  };
 }
 /**
  * 判断运行环境支持的css,用作css制作动画
