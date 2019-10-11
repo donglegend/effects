@@ -1,0 +1,14 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+canvas {
+  border: 1px #cccccc solid;
+}
+#stage {
+  width: 480px;
+  height: 800px;
+  margin: 0 auto;
+
+  border: 1px #cccccc solid;
+}
