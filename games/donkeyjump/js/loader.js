@@ -76,6 +76,7 @@ Loader.prototype = {
       Phaser.Timer.SECOND / 2,
       function() {
         this.game.state.start('home');
+        // this.game.state.start('play');
       },
       this
     );

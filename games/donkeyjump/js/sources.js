@@ -193,6 +193,13 @@ var SOURCES = {
       id: 'stair_stable_05',
       url: 'images/frames/stair/stair_stable_05.png',
     },
+    {
+      type: 'spritesheet',
+      id: 'arrow_key',
+      url: 'images/system/arrow_key.png',
+      width: 1500,
+      height: 3000,
+    },
   ],
   audios: [
     {

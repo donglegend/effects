@@ -10,6 +10,14 @@ function Play() {
   this.layerProps = null;
   this.lastStairY = 350;
   this.stairHeight = 200;
+  this.virtualCursors = {
+    left: {
+      isDown: false,
+    },
+    right: {
+      isDown: false,
+    },
+  };
 }
 
 Play.prototype = {
@@ -37,6 +45,9 @@ Play.prototype = {
     this.score = new Score(this.game);
 
     this.donkey = new Donkey(this.game);
+
+    this.createVirtualKey();
+    this.game.virtualCursors = this.virtualCursors;
 
     this.game.camera.bounds = true;
     window.donkeyScore = 0;
@@ -151,5 +162,42 @@ Play.prototype = {
   },
   updateBgScene: function() {
     this.layerBgScene.update(this.camera.y);
+  },
+  createVirtualKey: function() {
+    this.layerKeyLeft = this.game.add.sprite(
+      0,
+      this.game.world.height / 2,
+      'arrow_key'
+    );
+    this.layerKeyLeft.width = this.game.world.width / 2;
+    this.layerKeyLeft.height = this.game.world.height;
+    this.layerKeyLeft.scale.y = 0.2;
+    this.layerKeyLeft.inputEnabled = true;
+    this.layerKeyLeft.fixedToCamera = true;
+
+    this.layerKeyLeft.events.onInputDown.add(function() {
+      this.virtualCursors.left.isDown = true;
+    }, this);
+    this.layerKeyLeft.events.onInputUp.add(function() {
+      this.virtualCursors.left.isDown = false;
+    }, this);
+
+    this.layerKeyRight = this.game.add.sprite(
+      this.game.world.width / 2,
+      this.game.world.height / 2,
+      'arrow_key'
+    );
+    this.layerKeyRight.scale.y = 0.2;
+    this.layerKeyRight.frame = 1;
+    this.layerKeyRight.width = this.game.world.width / 2;
+    this.layerKeyRight.height = this.game.world.height;
+    this.layerKeyRight.inputEnabled = true;
+    this.layerKeyRight.fixedToCamera = true;
+    this.layerKeyRight.events.onInputDown.add(function() {
+      this.virtualCursors.right.isDown = true;
+    }, this);
+    this.layerKeyRight.events.onInputUp.add(function() {
+      this.virtualCursors.right.isDown = false;
+    }, this);
   },
 };

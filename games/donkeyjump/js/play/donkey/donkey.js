@@ -193,7 +193,7 @@ Donkey.prototype.viewPortMove = function() {
 Donkey.prototype._keyControl = function(params) {
   var ops = params || {};
   var vx = ops.vx || 300;
-  if (this.game.cursors.left.isDown) {
+  if (this.game.cursors.left.isDown || this.game.virtualCursors.left.isDown) {
     if (this.donkey.x < 0) {
       this.donkey.x = this.game.world.width;
     }
@@ -202,7 +202,10 @@ Donkey.prototype._keyControl = function(params) {
       this.donkey.scale.x = -1;
       this.donkey.body.velocity.x = vx * -1;
     }
-  } else if (this.game.cursors.right.isDown) {
+  } else if (
+    this.game.cursors.right.isDown ||
+    this.game.virtualCursors.right.isDown
+  ) {
     if (this.donkey.x > this.game.world.width) {
       this.donkey.x = 0;
     }
@@ -360,7 +363,6 @@ Donkey.prototype.__updateProp = function() {
     if (this.donkey.speedY > 0) {
       this.donkey.speedY = -10;
     }
-    console.log(this.donkey.speedY);
   } else {
     this.donkey.speedY = 0;
   }
