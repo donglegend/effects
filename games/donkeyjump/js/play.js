@@ -171,7 +171,6 @@ Play.prototype = {
     );
     this.layerKeyLeft.width = this.game.world.width / 2;
     this.layerKeyLeft.height = this.game.world.height;
-    this.layerKeyLeft.scale.y = 0.2;
     this.layerKeyLeft.inputEnabled = true;
     this.layerKeyLeft.fixedToCamera = true;
 
@@ -187,7 +186,6 @@ Play.prototype = {
       this.game.world.height / 2,
       'arrow_key'
     );
-    this.layerKeyRight.scale.y = 0.2;
     this.layerKeyRight.frame = 1;
     this.layerKeyRight.width = this.game.world.width / 2;
     this.layerKeyRight.height = this.game.world.height;
