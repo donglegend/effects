@@ -113,9 +113,9 @@ Play.prototype = {
    */
   createProp: function(stair) {
     if (
-      window.donkeyScore > 300 &&
+      window.donkeyScore > 1000 &&
       stair.name !== 'stair_moveable' &&
-      this.game.rnd.between(1, 10) > 5
+      this.game.rnd.between(1, 10) > 8
     ) {
       if (!this.layerProps) {
         this.layerProps = this.game.add.group();
@@ -183,9 +183,11 @@ Play.prototype = {
 
     this.layerKeyLeft.events.onInputDown.add(function() {
       this.virtualCursors.left.isDown = true;
+      this.layerKeyLeft.width = 250;
     }, this);
     this.layerKeyLeft.events.onInputUp.add(function() {
       this.virtualCursors.left.isDown = false;
+      this.layerKeyLeft.width = 240;
     }, this);
 
     this.layerKeyRight = this.game.add.sprite(
@@ -198,9 +200,11 @@ Play.prototype = {
     this.layerKeyRight.fixedToCamera = true;
     this.layerKeyRight.events.onInputDown.add(function() {
       this.virtualCursors.right.isDown = true;
+      this.layerKeyRight.width = 250;
     }, this);
     this.layerKeyRight.events.onInputUp.add(function() {
       this.virtualCursors.right.isDown = false;
+      this.layerKeyRight.width = 240;
     }, this);
   },
 };
