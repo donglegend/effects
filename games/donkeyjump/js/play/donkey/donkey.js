@@ -359,7 +359,8 @@ Donkey.prototype.__updateProp = function() {
   if (this.donkey.y > this.minY - this.donkey.distance) {
     var a = this.donkey.acceY;
     this.donkey.speedY =
-      -Math.sqrt(2 * a * this.donkey.distance) + a * this.__updateDuration * 2;
+      -Math.sqrt(2 * a * this.donkey.distance) * 0.8 +
+      a * this.__updateDuration * 2;
     if (this.donkey.speedY > 0) {
       this.donkey.speedY = -10;
     }

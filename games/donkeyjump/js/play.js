@@ -115,7 +115,7 @@ Play.prototype = {
     if (
       window.donkeyScore > 1000 &&
       stair.name !== 'stair_moveable' &&
-      this.game.rnd.between(1, 10) > 8
+      this.game.rnd.between(1, 10) > 2
     ) {
       if (!this.layerProps) {
         this.layerProps = this.game.add.group();
