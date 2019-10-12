@@ -151,7 +151,7 @@ Play.prototype = {
         group.forEach(function(sprite) {
           if (
             !sprite.visible ||
-            sprite.y - this.camera.y > this.camera.height
+            sprite.y - this.camera.y > this.camera.height - 30
           ) {
             group.remove(sprite, true);
             if (group._name === 'group_stairs') this.createStairs(1);
@@ -163,14 +163,21 @@ Play.prototype = {
   updateBgScene: function() {
     this.layerBgScene.update(this.camera.y);
   },
+  isMobile: function() {
+    const userAgent = window.navigator.userAgent;
+    return userAgent.match(
+      /(iPhone|iPod|Android|ios|iPad|AppleWebKit.*Mobile.*)/i
+    );
+  },
   createVirtualKey: function() {
+    if (!this.isMobile()) {
+      return;
+    }
     this.layerKeyLeft = this.game.add.sprite(
       0,
-      this.game.world.height / 2,
+      this.game.world.height - 200,
       'arrow_key'
     );
-    this.layerKeyLeft.width = this.game.world.width / 2;
-    this.layerKeyLeft.height = this.game.world.height;
     this.layerKeyLeft.inputEnabled = true;
     this.layerKeyLeft.fixedToCamera = true;
 
@@ -183,12 +190,10 @@ Play.prototype = {
 
     this.layerKeyRight = this.game.add.sprite(
       this.game.world.width / 2,
-      this.game.world.height / 2,
+      this.game.world.height - 200,
       'arrow_key'
     );
     this.layerKeyRight.frame = 1;
-    this.layerKeyRight.width = this.game.world.width / 2;
-    this.layerKeyRight.height = this.game.world.height;
     this.layerKeyRight.inputEnabled = true;
     this.layerKeyRight.fixedToCamera = true;
     this.layerKeyRight.events.onInputDown.add(function() {

@@ -197,8 +197,8 @@ var SOURCES = {
       type: 'spritesheet',
       id: 'arrow_key',
       url: 'images/system/arrow_key.png',
-      width: 1500,
-      height: 3000,
+      width: 240,
+      height: 200,
     },
   ],
   audios: [
