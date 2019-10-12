@@ -3,12 +3,6 @@
  */
 var SOURCES = {
   scripts: [
-    // { id: 'sources', url: 'js/sources.js' },
-    // { id: 'boot', url: 'js/boot.js' },
-    // { id: 'loader', url: 'js/loader.js' },
-    // { id: 'home', url: 'js/home.js' },
-    // { id: 'play', url: 'js/play.js' },
-    // { id: 'gameover', url: 'js/gameover.js' },
     { id: 'donkey', url: 'js/play/donkey/donkey.js' },
     { id: 'bgscene', url: 'js/play/bgscene/bgscene.js' },
     { id: 'prop', url: 'js/play/prop/prop.js' },
@@ -193,6 +187,7 @@ var SOURCES = {
       id: 'stair_stable_05',
       url: 'images/frames/stair/stair_stable_05.png',
     },
+    // 移动设备增加虚拟按键
     {
       type: 'spritesheet',
       id: 'arrow_key',

@@ -5,7 +5,6 @@ function Loader() {
   Phaser.State.call(this);
   this.layerLoadIcon = null;
   this.layerLoadText = null;
-  this.progress = 0;
 }
 Loader.prototype = {
   constructor: Loader,
@@ -46,6 +45,7 @@ Loader.prototype = {
   preload: function() {
     var game = this.game;
     var layerLoadText = this.layerLoadText;
+
     SOURCES.scripts.forEach(function(item) {
       game.load.script(item.id, item.url);
     });
@@ -66,7 +66,7 @@ Loader.prototype = {
       game.load.audio(item.id, item.src + '.mp3');
     });
 
-    game.load.onFileComplete.add(function progress(p, key, success) {
+    game.load.onFileComplete.add(function progress(p) {
       var text = '请稍后,资源加载中' + p + '%';
       layerLoadText.text = text;
     });
@@ -76,7 +76,6 @@ Loader.prototype = {
       Phaser.Timer.SECOND / 2,
       function() {
         this.game.state.start('home');
-        // this.game.state.start('play');
       },
       this
     );

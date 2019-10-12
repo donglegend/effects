@@ -10,6 +10,7 @@ function Play() {
   this.layerProps = null;
   this.lastStairY = 350;
   this.stairHeight = 200;
+  this.propChange = 4;
   this.virtualCursors = {
     left: {
       isDown: false,
@@ -19,7 +20,7 @@ function Play() {
     },
   };
 }
-
+window.donkeyScore = 0;
 Play.prototype = {
   constructor: Play,
   /**
@@ -53,9 +54,9 @@ Play.prototype = {
     window.donkeyScore = 0;
   },
   update: function() {
-    this.donkey.update();
-    this.updateObject();
+    this.updateDonkey();
     this.updateScore();
+    this.updateObject();
     this.updateBgScene();
   },
   shutdown: function(params) {
@@ -113,9 +114,8 @@ Play.prototype = {
    */
   createProp: function(stair) {
     if (
-      window.donkeyScore > 1000 &&
       stair.name !== 'stair_moveable' &&
-      this.game.rnd.between(1, 10) > 7
+      this.game.rnd.between(1, 10) < this.propChange
     ) {
       if (!this.layerProps) {
         this.layerProps = this.game.add.group();
@@ -132,6 +132,12 @@ Play.prototype = {
       });
       this.layerProps.add(prop.prop);
     }
+  },
+  /**
+   * 更新驴子信息
+   */
+  updateDonkey: function() {
+    this.donkey.update();
   },
   /**
    * 更新得分
@@ -151,7 +157,7 @@ Play.prototype = {
         group.forEach(function(sprite) {
           if (
             !sprite.visible ||
-            sprite.y - this.camera.y > this.camera.height - 30
+            sprite.y - this.camera.y > this.camera.height
           ) {
             group.remove(sprite, true);
             if (group._name === 'group_stairs') this.createStairs(1);
@@ -160,6 +166,9 @@ Play.prototype = {
       }
     });
   },
+  /**
+   * 背景层视差移动
+   */
   updateBgScene: function() {
     this.layerBgScene.update(this.camera.y);
   },

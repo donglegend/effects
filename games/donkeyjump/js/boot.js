@@ -1,3 +1,6 @@
+/**
+ * 游戏初始化,启动游戏
+ */
 function Boot() {
   Phaser.State.call(this);
 }

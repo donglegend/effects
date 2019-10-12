@@ -7,8 +7,6 @@ function Donkey(game) {
   this.donkeyGroup = null;
   this.donkey = null;
   this.direction = 'front';
-  this.cameramoving = false;
-  this.donkeymoving = false;
 
   this.states = [
     { key: 'daiji', frameRate: 0, physicsW: 128, physicsH: 128 },
@@ -75,7 +73,6 @@ function Donkey(game) {
       acceY: 0.09,
     },
   ];
-
   this.state = '';
   this.x = game.world.centerX;
   this.y = 600;
@@ -131,9 +128,9 @@ Donkey.prototype.initState = function() {
     var imgKey = key === 'spring' ? 'jump' : key;
     var frameRate = item.frameRate;
     var imgObj = this.game.cache.getImage(imgKey, true);
+    var frams = this.getFrames(imgKey, imgObj.frameWidth, imgObj.frameHeight);
     this[key] = this.game.add.sprite(this.x, this.y, imgKey);
     this[key].anchor = { x: 0.5, y: 0.5 };
-    var frams = this.getFrames(imgKey, imgObj.frameWidth, imgObj.frameHeight);
     this[key].animations.add(key, frams, frameRate, true);
     this[key].animations.play(key);
     this[key].visible = false;

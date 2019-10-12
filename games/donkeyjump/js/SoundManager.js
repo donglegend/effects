@@ -1,3 +1,6 @@
+/**
+ * 游戏所有音频管理类
+ */
 function SoundManager(game) {
   this.game = game;
   this.init();
@@ -11,9 +14,6 @@ SoundManager.prototype = {
     });
   },
   play: function(id) {
-    // if (this[id].isPlaying) {
-    //   return;
-    // }
     this[id].play();
   },
   pause: function(id) {
